@@ -64,16 +64,24 @@ nav ul li a {
     padding: 10px 20px;
     font-size: 16px;
     border: none;
-    background-color: #333;
-    color: #fff;
+    background-color: transparent;
+    color: #000;
     cursor: pointer;
-    display: inline-block; 
+    display: inline-block;
+    text-decoration: none;
+    transition: color 0.3s, border-bottom-color 0.3s;
+      
 }
 
 .search-buttons button.active {  /* aktywy przycisk wyglad */
-    background-color: #555;
-    display: inline-block;
+    color: #007aff;
+    border-bottom: 3px solid #007aff;
 }
+
+.search-buttons button:not(.active):hover {
+    color: #00a9ff;
+    border-bottom: 3px solid #00a9ff;
+  }
 
 .search-bar {
     margin-top: 10px;
@@ -91,12 +99,17 @@ nav ul li a {
 .search-bar button { /* przycisk wyszukiwania */
     padding: 10px 20px;
     font-size: 16px;
-    border: none;
-    background-color: #555;
-    color: #fff;
+    margin: 10px auto 0;
+    background-color: transparent;
+    color: #000;
     cursor: pointer;
-    display: block; 
-    margin: 10px auto 0; 
+    display: inline-block;
+    text-decoration: none;
+    transition: color 0.3s, border-bottom-color 0.3s;
+    border: none;
+    color: #007aff;
+    border-bottom: 3px solid #007aff;
+
 }
 
 .content-section {  /* sekcja opisowa strony */
