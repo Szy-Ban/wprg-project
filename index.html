@@ -3,6 +3,7 @@
 <head>
     <link rel="stylesheet" type="text/css" href="style.css">
     <title>Real Estate Company</title>
+    <script src="JavaScript.js"></script>
 </head>
 <body>
     <header>  <!-- naglowek -->
@@ -19,10 +20,10 @@
     </header>
     <section class="search-container"> <!-- tlo sekcji do szukania -->
         <section class="search-section"> <!-- sekcja do szukania -->
-            <div class="search-buttons"> <!-- przyciski -->
-                <button class="active">Buy</button>
-                <button>Rent</button>
-            </div>
+            <div class="search-buttons">
+                <button id="buyButton" class="active" onclick="toggleButton('buyButton')">Buy</button>
+                <button id="rentButton" onclick="toggleButton('rentButton')">Rent</button>
+              </div>
             <div class="search-bar"> <!-- pole do szukania -->
                 <input type="text" placeholder="Search for your dream property | Enter city">
                 <button>Search</button>
