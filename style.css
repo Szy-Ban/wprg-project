@@ -1,0 +1,119 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    font-family: Arial, sans-serif;
+    height: 100%;
+    width: 100%;
+    min-height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+header { /* naglowek i ustawienia 'przyciskow' */
+    background-color: #333;
+    color: #fff;
+    padding: 20px;
+    width: 100%;
+}
+
+header h1 {
+    margin: 0;
+}
+
+nav ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 10px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+
+.search-container {  /* tlo wyszukiwania */
+    background-color: #6d0505; 
+    padding: 50px; 
+    text-align: center; 
+    display: flex; 
+    align-items: center;
+    justify-content: center; 
+    width: 100%;
+    min-height: 70vh;
+}
+
+.search-section { /* sekcja wyszukiwania */
+    background-color: #f5f5f5;
+    padding: 20px;
+    text-align: center; 
+    width: 35%;
+}
+
+.search-buttons button { /* przyciski kategorii */
+    margin-right: 10px;
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #333;
+    color: #fff;
+    cursor: pointer;
+    display: inline-block; 
+}
+
+.search-buttons button.active {  /* aktywy przycisk wyglad */
+    background-color: #555;
+    display: inline-block;
+}
+
+.search-bar {
+    margin-top: 10px;
+    width: 100%;
+}
+
+.search-bar input{  /* pole wpisywania */
+    width: 70%;
+    padding: 10px;
+    font-size: 16px;
+    display: block;
+    margin: 0 auto;
+}
+
+.search-bar button { /* przycisk wyszukiwania */
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #555;
+    color: #fff;
+    cursor: pointer;
+    display: block; 
+    margin: 10px auto 0; 
+}
+
+.content-section {  /* sekcja opisowa strony */
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+    background-color: aquamarine;
+    padding: 50px;
+    text-align: center;
+    min-height: calc(100vh - 50px);
+}
+
+footer { /* stopka */
+    background-color: #333;
+    color: #fff;
+    padding: 10px;
+    text-align: center;
+    margin-top: auto;
+    width: 100%;
+}
