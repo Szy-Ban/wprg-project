@@ -28,15 +28,15 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" type="text/css" href="style.css">
+    <link rel="stylesheet" type="text/css" href="../css/style.css">
     <title>Real Estate Company</title>
-    <script src="JavaScript.js"></script>
+    <script src="../js/JavaScript.js"></script>
 </head>
 <body>
 <header>  <!-- naglowek -->
 <div class="header-container">
         <div class="left-nav">
-        <img src="logo.png">
+        <img src="../img/logo.png">
             <nav>
                 <ul>
                 <li><h1>Real Estate Company</h1></li><br><br>
@@ -52,7 +52,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo '<nav>';
             echo '<ul>';
             echo '<li><h1>Witaj, ' . $_SESSION['first_name'] . '!</h1></li><br><br>';
-            echo '<li><a href="profile.php">Profil</a></li>';
+            echo '<li><a href="#">Profil</a></li>';
             echo '<li><a href="logout.php">Logout</a></li>';
             echo '</ul>';
             echo '</nav>';
