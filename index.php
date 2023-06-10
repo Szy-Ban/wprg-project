@@ -1,3 +1,6 @@
+<?php
+session_start();
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -6,18 +9,43 @@
     <script src="JavaScript.js"></script>
 </head>
 <body>
-    <header>  <!-- naglowek -->
-        <h1>Real Estate Company</h1>
-        <nav>
-            <ul> <!-- przyciski pod napisem -->
-                <li><a href="#">Home</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Login</a></li>
-                <li><a href="#">Sign up</a></li>
-            </ul>
-        </nav>
-    </header>
+<header>  <!-- naglowek -->
+<div class="header-container">
+        <div class="left-nav">
+        <img src="logo.png">
+            <nav>
+                <ul>
+                <li><h1>Real Estate Company</h1></li><br><br>
+                    <li><a href="index.php">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+        <?php
+        if (isset($_SESSION['login_user'])) { //zmiana wyswietlania headera  w zaleznosci od zalogowania
+            echo '<div class="right-nav">';
+            echo '<nav>';
+            echo '<ul>';
+            echo '<li><h1>Hello, ' . $_SESSION['first_name'] . '!</h1></li><br><br>';
+            echo '<li><a href="profile.php">Profil</a></li>';
+            echo '<li><a href="logout.php">Logout</a></li>';
+            echo '</ul>';
+            echo '</nav>';
+            echo '</div>';
+        } else {
+            echo '<div class="right-nav">';
+            echo '<nav>';
+            echo '<ul>';
+            echo '<li><a href="login.php">Login</a></li><br><br>';
+            echo '<li><a href="register.php">Sign up</a></li>';
+            echo '</ul>';
+            echo '</nav>';
+            echo '</div>';
+        }
+        ?>
+    </div>
+</header>
     <section class="search-container"> <!-- tlo sekcji do szukania -->
         <section class="search-section"> <!-- sekcja do szukania -->
             <div class="search-buttons">
