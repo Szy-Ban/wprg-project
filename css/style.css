@@ -157,7 +157,6 @@ footer { /* stopka */
 .content-section-houses {  /* sekcja wyswietlania domow */
     flex-grow: 1;
     display: flex;
-    justify-content: center;
     background-color: aquamarine;
     padding: 50px;
     text-align: center;
