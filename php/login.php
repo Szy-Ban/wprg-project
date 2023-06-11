@@ -83,17 +83,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </header>
 <div class="content-section">
-    <div class="form-container">
+    <div class="form-container-login">
+        <h2>Login</h2>
         <form method="POST" action="login.php">
-            <label for="email">Email:</label><br>
-            <input type="text" id="email" name="email"><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password"><br>
-            <input type="submit" value="Login">
+            <label for="email">Email:</label>
+            <input type="text" id="email" name="email" class="form-field">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-field">
+            <input type="submit" value="Login" class="form-button">
         </form>
         <?php
         if ($error_message != "") {
-            echo "<div class='error-message'>$error_message</div>";
+            echo "<div class='error-message'><h3>$error_message</h3></div>";
         }
         ?>
     </div>

@@ -135,6 +135,11 @@ nav ul li a {
     border-bottom: 3px solid #007aff;
 }
 
+.search-bar button:hover { /* styl dla hover */
+    color: #00a9ff;
+    border-bottom: 3px solid #00a9ff;
+}
+
 .content-section {  /* sekcja opisowa strony */
     flex-grow: 1;
     display: flex;
@@ -188,13 +193,63 @@ footer { /* stopka */
     margin-bottom: 10px;
 }
 
-.form-container { /* formularze rejestracji */
+.form-container-login { /* formularze logowania */
     display: flex;
     flex-direction: column;
     align-items: center;
+    width: 450px;
+    height: 350px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    margin-top: 20px;
+}
+
+.form-container-register { /* formularze rejestracji */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 450px;
+    height: 670px;
+    background-color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    margin-top: 20px;
 }
 
 .error-message {
     color: red;
     margin-top: 20px;
+}
+
+.form-field {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 20px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+}
+
+.form-button {
+    padding: 10px 20px;
+    font-size: 20px;
+    background-color: transparent;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s, border-bottom-color 0.3s;
+    border: none;
+    color: #007aff;
+    border-bottom: 3px solid #007aff;
+}
+
+.form-button:hover {
+    color: #00a9ff;
+    border-bottom: 3px solid #00a9ff;
+}
+
+textarea {
+    resize: none;
 }

@@ -89,25 +89,26 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </header>
     <div class="content-section">
-    <div class="form-container">
+    <div class="form-container-register">
+    <h2>Register</h2>
         <form method="POST" action="register.php">
-            <label for="first_name">First Name:</label><br>
-            <input type="text" id="first_name" name="first_name"><br>
-            <label for="last_name">Last Name:</label><br>
-            <input type="text" id="last_name" name="last_name"><br>
-            <label for="email">Email:</label><br>
-            <input type="text" id="email" name="email"><br>
-            <label for="phone_number">Phone Number:</label><br>
-            <input type="text" id="phone_number" name="phone_number"><br>
-            <label for="password">Password:</label><br>
-            <input type="password" id="password" name="password"><br>
-            <label for="notes">Notes:</label><br>
-            <input type="text" id="notes" name="notes"><br>
-            <input type="submit" value="Register">
+            <label for="first_name">First name:</label>
+            <input type="text" id="first_name" name="first_name" class="form-field">
+            <label for="last_name">Last name:</label>
+            <input type="text" id="last_name" name="last_name" class="form-field">
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" class="form-field">
+            <label for="password">Password:</label>
+            <input type="password" id="password" name="password" class="form-field">
+            <label for="phone_number">Phone number:</label>
+            <input type="tel" id="phone_number" name="phone_number" class="form-field">
+            <label for="notes">Notes:</label>
+            <textarea id="notes" name="notes" class="form-field"></textarea>
+            <input type="submit" value="Register" class="form-button">
         </form>
         <?php
         if ($error_message != '') {
-            echo "<div class='error-message'>$error_message</div>";
+            echo "<div class='error-message'><h3>$error_message</h3></div>";
         }
         ?>
     </div>
