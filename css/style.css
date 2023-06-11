@@ -187,3 +187,14 @@ footer { /* stopka */
     margin: 0;
     margin-bottom: 10px;
 }
+
+.form-container { /* formularze rejestracji */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.error-message {
+    color: red;
+    margin-top: 20px;
+}

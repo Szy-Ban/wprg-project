@@ -1,7 +1,8 @@
 <?php
 include('config.php');
-
+$error_message = '';
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    
     $firstName = $_POST['first_name'];
     $lastName = $_POST['last_name'];
     $email = $_POST['email'];
@@ -10,7 +11,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $notes = $_POST['notes'];
     $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-    //utworzenie konta
+    // sprawdzanie czy pola nie sa puste
+    if (empty($firstName) || empty($lastName) || empty($email) || empty($phoneNumber) || empty($password) || empty($notes)) {
+        $error_message = "None of the fields can be empty.";
+    }else{
+    //sprawdzenie unikanlnosci maila 
+    $stmt = $conn->prepare("SELECT * FROM Clients WHERE Email = ?");
+    $stmt->bind_param("s", $email);
+    $stmt->execute();
+    $result = $stmt->get_result();
+
+    if ($result->num_rows > 0) { //sprawdzenie czy mail istnieje
+        $error_message = "Email already exists!";
+    } else if(strlen($password) < 4) { //czy haslo ma minimum 4 znaki
+        $error_message = "Password must be at least 4 characters long!";
+    } else {
+    //utworzenie konta jezeli nie ma problemow
     $stmt = $conn->prepare("INSERT INTO Clients (Password, First_name, Last_name, Email, Phone_number, Notes) VALUES (?, ?, ?, ?, ?, ?)");
     $stmt->bind_param("ssssss", $hashed_password, $firstName, $lastName, $email, $phoneNumber, $notes);
 
@@ -20,6 +36,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } else { //jezeli nie uda sie uruchomic
         echo "Error: " . $stmt->error;
     }
+    }
+}
 }
 ?>
 
@@ -51,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo '<div class="right-nav">';
             echo '<nav>';
             echo '<ul>';
-            echo '<li><h1>Witaj, ' . $_SESSION['first_name'] . '!</h1></li><br><br>';
+            echo '<li><h1>Hello, ' . $_SESSION['first_name'] . '!</h1></li><br><br>';
             echo '<li><a href="#">Profil</a></li>';
             echo '<li><a href="logout.php">Logout</a></li>';
             echo '</ul>';
@@ -71,21 +89,28 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </header>
     <div class="content-section">
-    <form method="POST" action="register.php">
-        <label for="first_name">First Name:</label><br>
-        <input type="text" id="first_name" name="first_name"><br>
-        <label for="last_name">Last Name:</label><br>
-        <input type="text" id="last_name" name="last_name"><br>
-        <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email"><br>
-        <label for="phone_number">Phone Number:</label><br>
-        <input type="text" id="phone_number" name="phone_number"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br>
-        <label for="notes">Notes:</label><br>
-        <input type="text" id="notes" name="notes"><br>
-        <input type="submit" value="Register">
-    </form>
+    <div class="form-container">
+        <form method="POST" action="register.php">
+            <label for="first_name">First Name:</label><br>
+            <input type="text" id="first_name" name="first_name"><br>
+            <label for="last_name">Last Name:</label><br>
+            <input type="text" id="last_name" name="last_name"><br>
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <label for="phone_number">Phone Number:</label><br>
+            <input type="text" id="phone_number" name="phone_number"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <label for="notes">Notes:</label><br>
+            <input type="text" id="notes" name="notes"><br>
+            <input type="submit" value="Register">
+        </form>
+        <?php
+        if ($error_message != '') {
+            echo "<div class='error-message'>$error_message</div>";
+        }
+        ?>
+    </div>
 </div>
 <footer> <!-- Stopka -->
         <p>&copy; 2023 Szymon Baniewicz - WPRG Project.</p>
