@@ -23,7 +23,7 @@ session_start();
             </nav>
         </div>
         <?php
-        if (isset($_SESSION['login_user'])) { //zmiana wyswietlania headera  w zaleznosci od zalogowania
+        if (isset($_SESSION['login_user'])) {  //jezeli user zalogowany, wyswietlac mozliwosc wylogowania
             echo '<div class="right-nav">';
             echo '<nav>';
             echo '<ul>';
@@ -33,7 +33,7 @@ session_start();
             echo '</ul>';
             echo '</nav>';
             echo '</div>';
-        } else {
+        } else { //jezeli nie zalogowany, wyswietlac mozliwosc logowania i stworzenia konta
             echo '<div class="right-nav">';
             echo '<nav>';
             echo '<ul>';
@@ -46,18 +46,21 @@ session_start();
         ?>
     </div>
 </header>
-    <section class="search-container"> <!-- tlo sekcji do szukania -->
-        <section class="search-section"> <!-- sekcja do szukania -->
-            <div class="search-buttons">
-                <button id="buyButton" class="active" onclick="toggleButton('buyButton')">Buy</button>
-                <button id="rentButton" onclick="toggleButton('rentButton')">Rent</button>
-              </div>
-            <div class="search-bar"> <!-- pole do szukania -->
-                <input type="text" placeholder="Search for your dream property | Enter city">
-                <button>Search</button>
-            </div>
-        </section>
+<section class="search-container"> <!-- tlo sekcji do szukania -->
+    <section class="search-section"> <!-- sekcja do szukania -->
+        <div class="search-buttons">
+            <button class="button active" id="buyButton" onclick="toggleButton('buyButton')">Buy</button>
+            <button class="button" id="rentButton" onclick="toggleButton('rentButton')">Rent</button>
+        </div>
+        <div class="search-bar"> <!--pole do szukania, formularz i przechodzenie do podstrony wyszukiwania -->
+            <form action="search.php" method="GET">
+                <input type="text" name="city" placeholder="Search for your dream property | Enter city">
+                <input type="hidden" id="type" name="type" value="0">
+                <button type="submit">Search</button>
+            </form>
+        </div>
     </section>
+</section>
     <section class="content-section"> <!-- sekcja opisowa strony -->
 
         Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...<br>
