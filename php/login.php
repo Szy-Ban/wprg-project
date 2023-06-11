@@ -1,11 +1,15 @@
 <?php
 require 'config.php';
+$error_message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["email"]) && isset($_POST["password"])) {
         $email = $_POST["email"];
         $password = $_POST["password"];
 
+        if (empty($email) || empty($password)) {
+            $error_message = "None of the fields can be empty.";
+        } else {
         $stmt = $conn->prepare("SELECT * FROM Clients WHERE Email = ?"); //zapytanie szukajace usera z danym emailem
         $stmt->bind_param("s", $email);
         $stmt->execute();
@@ -22,12 +26,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             header('location: index.php'); //przeniesienie do strony glownej
             exit;
         } else { //zle haslo
-            echo "Incorrect password!";
+            $error_message = "Incorrect password!";
+            }
         }
-    } else { //puste pole
-        echo "Please enter both email and password!";
+        } else { //puste pole
+        $error_message = "Please enter both email and password!";
     }
 }
+   
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -55,7 +63,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             echo '<div class="right-nav">';
             echo '<nav>';
             echo '<ul>';
-            echo '<li><h1>Witaj, ' . $_SESSION['first_name'] . '!</h1></li><br><br>';
+            echo '<li><h1>Hello, ' . $_SESSION['first_name'] . '!</h1></li><br><br>';
             echo '<li><a href="#">Profil</a></li>';
             echo '<li><a href="logout.php">Logout</a></li>';
             echo '</ul>';
@@ -75,13 +83,20 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </div>
 </header>
 <div class="content-section">
-    <form method="POST" action="login.php">
-        <label for="email">Email:</label><br>
-        <input type="text" id="email" name="email"><br>
-        <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password"><br>
-        <input type="submit" value="Login">
-    </form>
+    <div class="form-container">
+        <form method="POST" action="login.php">
+            <label for="email">Email:</label><br>
+            <input type="text" id="email" name="email"><br>
+            <label for="password">Password:</label><br>
+            <input type="password" id="password" name="password"><br>
+            <input type="submit" value="Login">
+        </form>
+        <?php
+        if ($error_message != "") {
+            echo "<div class='error-message'>$error_message</div>";
+        }
+        ?>
+    </div>
 </div>
 <footer> <!-- Stopka -->
         <p>&copy; 2023 Szymon Baniewicz - WPRG Project.</p>
