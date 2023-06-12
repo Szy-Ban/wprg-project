@@ -96,8 +96,8 @@ if(isset($_GET['city']) && isset($_GET['type'])){ //sprawdzenie czy pole  lub ty
                 echo '<p>Address: '.$row['Address'].'</p>';
                 echo '<p>Square meters: '.$row['Square_meters'].'</p>';
                 echo '<p>Number of rooms: '.$row['nr_rooms'].'</p>';
-                echo '<p>Price: <b>'.$row['Price'].' ZŁ</b></p><br><br>';
-                echo '<a href="property_details.php?id='.$row['Property_ID'].'"><button>Check Details</button></a>';
+                echo '<p>Price: <b>'.$row['Price'].' ZŁ</b></p>';
+                echo '<a href="property_details.php?id='.$row['Property_ID'].'"><button class="detail-button">Check Details</button></a>';
                 echo '</div>';
             }
         ?>

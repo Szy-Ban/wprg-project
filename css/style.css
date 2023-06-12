@@ -261,3 +261,21 @@ footer { /* stopka */
 textarea {
     resize: none;
 }
+
+.detail-button {
+    padding: 10px 25px;
+    font-size: 20px;
+    background-color: transparent;
+    color: #000;
+    cursor: pointer;
+    text-decoration: none;
+    transition: color 0.3s, border-bottom-color 0.3s;
+    border: none;
+    color: #007aff;
+    border-bottom: 3px solid #007aff;
+}
+
+.detail-button:hover {
+    color: #00a9ff;
+    border-bottom: 3px solid #00a9ff;
+}
