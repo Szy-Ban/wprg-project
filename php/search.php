@@ -21,6 +21,8 @@ if(isset($_GET['city']) && isset($_GET['type'])){ //sprawdzenie czy pole  lub ty
 
     $stmt->execute();
     $result = $stmt->get_result();
+}else{
+    header("Location: index.php");
 }
 
 ?>
