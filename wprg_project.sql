@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.4
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Czas generowania: 11 Cze 2023, 02:43
--- Wersja serwera: 10.4.17-MariaDB
--- Wersja PHP: 8.0.2
+-- Generation Time: Cze 12, 2023 at 12:41 PM
+-- Wersja serwera: 10.4.28-MariaDB
+-- Wersja PHP: 8.2.4
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,7 +18,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Baza danych: `wprg_project`
+-- Database: `wprg_project`
 --
 
 -- --------------------------------------------------------
@@ -33,7 +33,7 @@ CREATE TABLE `agents` (
   `Last_name` varchar(255) NOT NULL,
   `Email` varchar(255) NOT NULL,
   `Phone_number` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -44,7 +44,7 @@ CREATE TABLE `agents` (
 CREATE TABLE `agent_property` (
   `Property_ID` int(11) NOT NULL,
   `Agent_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -60,10 +60,10 @@ CREATE TABLE `clients` (
   `Email` varchar(255) NOT NULL,
   `Phone_number` int(11) NOT NULL,
   `Notes` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `clients`
+-- Dumping data for table `clients`
 --
 
 INSERT INTO `clients` (`Client_ID`, `Password`, `First_name`, `Last_name`, `Email`, `Phone_number`, `Notes`) VALUES
@@ -79,7 +79,7 @@ INSERT INTO `clients` (`Client_ID`, `Password`, `First_name`, `Last_name`, `Emai
 CREATE TABLE `client_property` (
   `Property_ID` int(11) NOT NULL,
   `Client_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -93,7 +93,7 @@ CREATE TABLE `commissions_rent` (
   `Comission_rate` float(2,2) NOT NULL,
   `Profit` float(6,2) NOT NULL,
   `Agent_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -107,7 +107,7 @@ CREATE TABLE `commissions_sale` (
   `Comission_rate` float(2,2) NOT NULL,
   `Profit` float(6,2) NOT NULL,
   `Agent_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -118,7 +118,15 @@ CREATE TABLE `commissions_sale` (
 CREATE TABLE `features` (
   `Feature_ID` int(11) NOT NULL,
   `Feature_type` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `features`
+--
+
+INSERT INTO `features` (`Feature_ID`, `Feature_type`) VALUES
+(1, 'No additional features'),
+(2, 'Dishwasher');
 
 -- --------------------------------------------------------
 
@@ -130,7 +138,16 @@ CREATE TABLE `features_description` (
   `ID` int(11) NOT NULL,
   `Property_Property_ID` int(11) NOT NULL,
   `Features_Feature_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `features_description`
+--
+
+INSERT INTO `features_description` (`ID`, `Property_Property_ID`, `Features_Feature_ID`) VALUES
+(1, 1, 1),
+(2, 2, 1),
+(3, 3, 2);
 
 -- --------------------------------------------------------
 
@@ -152,16 +169,16 @@ CREATE TABLE `property` (
   `Feature` int(11) NOT NULL,
   `Description` varchar(255) NOT NULL,
   `Price` float NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Zrzut danych tabeli `property`
+-- Dumping data for table `property`
 --
 
 INSERT INTO `property` (`Property_ID`, `Type`, `PType`, `City`, `Address`, `ZIP_Code`, `Square_meters`, `nr_rooms`, `nr_bedrooms`, `nr_bathrooms`, `Feature`, `Description`, `Price`) VALUES
 (1, b'0', 'Apartment', 'Sopot', 'Malarzy 3/14', '84-204', 57, 6, 2, 1, 1, 'Testowe mieszkanie', 51000),
 (2, b'1', 'Apartment', 'Warszawa', 'Kliniczna 11', '85-302', 87, 6, 4, 2, 1, 'Warszawski apartament', 5000.5),
-(3, b'0', 'House', 'Sopot', 'Chlebowa 13', '85-310', 123, 8, 3, 2, 0, 'Testowy domek', 320000);
+(3, b'0', 'House', 'Sopot', 'Chlebowa 13', '85-310', 123, 8, 3, 2, 2, 'Testowy domek', 320000);
 
 -- --------------------------------------------------------
 
@@ -176,7 +193,7 @@ CREATE TABLE `rent` (
   `Tenant_ID` int(11) NOT NULL,
   `Monthly_rent` varchar(255) NOT NULL,
   `Lease_term` varchar(255) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- --------------------------------------------------------
 
@@ -191,7 +208,7 @@ CREATE TABLE `sale` (
   `Date` varchar(255) NOT NULL,
   `Buyer_ID` int(11) NOT NULL,
   `Seller_ID` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Indeksy dla zrzutów tabel
@@ -278,104 +295,104 @@ ALTER TABLE `sale`
   ADD KEY `Sale_Seller` (`Buyer_ID`);
 
 --
--- AUTO_INCREMENT dla zrzuconych tabel
+-- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT dla tabeli `agents`
+-- AUTO_INCREMENT for table `agents`
 --
 ALTER TABLE `agents`
   MODIFY `Agent_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT dla tabeli `clients`
+-- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
   MODIFY `Client_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
--- AUTO_INCREMENT dla tabeli `commissions_rent`
+-- AUTO_INCREMENT for table `commissions_rent`
 --
 ALTER TABLE `commissions_rent`
   MODIFY `Comission_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT dla tabeli `commissions_sale`
+-- AUTO_INCREMENT for table `commissions_sale`
 --
 ALTER TABLE `commissions_sale`
   MODIFY `Comission_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT dla tabeli `features`
+-- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `Feature_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Feature_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
--- AUTO_INCREMENT dla tabeli `features_description`
+-- AUTO_INCREMENT for table `features_description`
 --
 ALTER TABLE `features_description`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT dla tabeli `property`
+-- AUTO_INCREMENT for table `property`
 --
 ALTER TABLE `property`
   MODIFY `Property_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
--- AUTO_INCREMENT dla tabeli `rent`
+-- AUTO_INCREMENT for table `rent`
 --
 ALTER TABLE `rent`
   MODIFY `Rent_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- AUTO_INCREMENT dla tabeli `sale`
+-- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
   MODIFY `Sale_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
--- Ograniczenia dla zrzutów tabel
+-- Constraints for dumped tables
 --
 
 --
--- Ograniczenia dla tabeli `agent_property`
+-- Constraints for table `agent_property`
 --
 ALTER TABLE `agent_property`
   ADD CONSTRAINT `Agent_property_Agents` FOREIGN KEY (`Agent_ID`) REFERENCES `agents` (`Agent_ID`),
   ADD CONSTRAINT `Agent_property_Property` FOREIGN KEY (`Property_ID`) REFERENCES `property` (`Property_ID`);
 
 --
--- Ograniczenia dla tabeli `client_property`
+-- Constraints for table `client_property`
 --
 ALTER TABLE `client_property`
   ADD CONSTRAINT `Client_property_Clients` FOREIGN KEY (`Client_ID`) REFERENCES `clients` (`Client_ID`),
   ADD CONSTRAINT `Client_property_Property` FOREIGN KEY (`Property_ID`) REFERENCES `property` (`Property_ID`);
 
 --
--- Ograniczenia dla tabeli `commissions_rent`
+-- Constraints for table `commissions_rent`
 --
 ALTER TABLE `commissions_rent`
   ADD CONSTRAINT `Comissions_Agents` FOREIGN KEY (`Agent_ID`) REFERENCES `agents` (`Agent_ID`),
   ADD CONSTRAINT `Comissions_Rent` FOREIGN KEY (`Rent_ID`) REFERENCES `rent` (`Rent_ID`);
 
 --
--- Ograniczenia dla tabeli `commissions_sale`
+-- Constraints for table `commissions_sale`
 --
 ALTER TABLE `commissions_sale`
   ADD CONSTRAINT `Commissions_Rent_Agents` FOREIGN KEY (`Agent_ID`) REFERENCES `agents` (`Agent_ID`),
   ADD CONSTRAINT `Commissions_Sale_Sale` FOREIGN KEY (`Sale_ID`) REFERENCES `sale` (`Sale_ID`);
 
 --
--- Ograniczenia dla tabeli `features_description`
+-- Constraints for table `features_description`
 --
 ALTER TABLE `features_description`
   ADD CONSTRAINT `Feature_test_Features` FOREIGN KEY (`Features_Feature_ID`) REFERENCES `features` (`Feature_ID`),
   ADD CONSTRAINT `Feature_test_Property` FOREIGN KEY (`Property_Property_ID`) REFERENCES `property` (`Property_ID`);
 
 --
--- Ograniczenia dla tabeli `rent`
+-- Constraints for table `rent`
 --
 ALTER TABLE `rent`
   ADD CONSTRAINT `Rent_Property` FOREIGN KEY (`Property_ID`) REFERENCES `property` (`Property_ID`),
@@ -383,7 +400,7 @@ ALTER TABLE `rent`
   ADD CONSTRAINT `Tenat_ID` FOREIGN KEY (`Renter_ID`) REFERENCES `clients` (`Client_ID`);
 
 --
--- Ograniczenia dla tabeli `sale`
+-- Constraints for table `sale`
 --
 ALTER TABLE `sale`
   ADD CONSTRAINT `Sale_Buyer` FOREIGN KEY (`Seller_ID`) REFERENCES `clients` (`Client_ID`),
