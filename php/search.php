@@ -85,7 +85,6 @@ if(isset($_GET['city']) && isset($_GET['type'])){ //sprawdzenie czy pole  lub ty
             </form>
         </section>
     </section>
-
     <section class="content-section-houses">
         <?php
             while($row = $result->fetch_assoc()) {

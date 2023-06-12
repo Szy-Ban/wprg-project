@@ -78,16 +78,22 @@ nav ul li a {
 }
 
 .search-section { /* sekcja wyszukiwania */
-    background-color: #f5f5f5;
-    padding: 20px;
-    text-align: center; 
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
     width: 35%;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    background-color: #fff;
+    margin: auto;
 }
 
 .search-buttons button { /* przyciski kategorii */
     margin-right: 10px;
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 18px;
     border: none;
     background-color: transparent;
     color: #000;
@@ -113,19 +119,21 @@ nav ul li a {
 }
 
 .search-bar input{  /* pole wpisywania */
-    width: 70%;
+    min-width:40vh;
     padding: 10px;
-    font-size: 16px;
+    font-size: 18px;
     display: block;
     margin: 0 auto;
+    border-radius: 5px;
+    border: 1px solid #ccc; 
+
 }
 
 .search-bar button { /* przycisk wyszukiwania */
     padding: 10px 20px;
-    font-size: 16px;
+    font-size: 20px;
     margin: 10px auto 0;
     background-color: transparent;
-    color: #000;
     cursor: pointer;
     display: inline-block;
     text-decoration: none;
