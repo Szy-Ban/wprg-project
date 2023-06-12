@@ -279,3 +279,23 @@ textarea {
     color: #00a9ff;
     border-bottom: 3px solid #00a9ff;
 }
+
+.property-details {
+    width: 60%;
+    margin: 0 auto;
+    background-color: #f1f1f1;
+    padding: 20px;
+    border-radius: 15px;
+    box-shadow: 0px 0px 10px rgba(0,0,0,0.15);
+}
+
+.property-field {
+    font-size: 20px;
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+
+.property-field li {
+    list-style: none;
+}

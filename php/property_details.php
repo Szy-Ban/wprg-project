@@ -70,27 +70,53 @@ if (isset($_GET['id'])) {
         ?>
     </div>
     </header>
-<div class="content-section">
+    <div class="content-section"> 
     <div class="property-details">  <!-- szczegoly o domu -->
         <h2><?php echo $property['PType']; ?></h2>
-        <p>City: <?php echo $property['City']; ?></p>
-        <p>Address: <?php echo $property['Address']; ?></p>
-        <p>Square meters: <?php echo $property['Square_meters']; ?></p>
-        <p>Number of rooms: <?php echo $property['nr_rooms']; ?></p>
-        <p>Number of bedrooms: <?php echo $property['nr_bedrooms']; ?></p>
-        <p>Number of bathrooms: <?php echo $property['nr_bathrooms']; ?></p>
-        <p>Description: <?php echo $property['Description']; ?></p>
-        <p>Price: <?php echo $property['Price']; ?> ZŁ</p>
-        <p>Features:</p>
-        <ul>
-            <?php //dodatkowe udogodnienia jako lista
-                foreach($features as $feature) {
-                    echo '<li>'.$feature['Feature_type'].'</li>';
-                }
-            ?>
-        </ul>
+        <div class="property-field">
+            <span>City:</span> 
+            <span><?php echo $property['City']; ?></span>
+        </div>
+        <div class="property-field">
+            <span>Address:</span> 
+            <span><?php echo $property['Address']; ?></span>
+        </div>
+        <div class="property-field">
+            <span>Square meters:</span> 
+            <span><?php echo $property['Square_meters']; ?></span>
+        </div>
+        <div class="property-field">
+            <span>Number of rooms:</span> 
+            <span><?php echo $property['nr_rooms']; ?></span>
+        </div>
+        <div class="property-field">
+            <span>Number of bedrooms:</span> 
+            <span><?php echo $property['nr_bedrooms']; ?></span>
+        </div>
+        <div class="property-field">
+            <span>Number of bathrooms:</span> 
+            <span><?php echo $property['nr_bathrooms']; ?></span>
+        </div>
+        <div class="property-field">
+            <span>Description:</span> 
+            <span><?php echo $property['Description']; ?></span>
+        </div>
+        <div class="property-field">
+            <span>Price:</span> 
+            <span><?php echo $property['Price']; ?> ZŁ</span>
+        </div>
+        <div class="property-field">
+            <span>Features:</span> 
+            <ul>
+                <?php
+                    foreach($features as $feature) { // dodatkowe udogodnienia jako lista
+                        echo '<li>'.$feature['Feature_type'].'</li>';
+                    }
+                ?>
+            </ul>
+        </div>
     </div>
-    </div>
+</div>
     <footer> <!-- Stopka -->
         <p>&copy; 2023 Szymon Baniewicz - WPRG Project.</p>
     </footer>
