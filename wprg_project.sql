@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 12, 2023 at 12:41 PM
+-- Generation Time: Cze 13, 2023 at 11:58 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -42,6 +42,7 @@ CREATE TABLE `agents` (
 --
 
 CREATE TABLE `agent_property` (
+  `agents_property_ID` int(11) NOT NULL,
   `Property_ID` int(11) NOT NULL,
   `Agent_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -57,18 +58,19 @@ CREATE TABLE `clients` (
   `Password` varchar(60) NOT NULL,
   `First_name` varchar(255) NOT NULL,
   `Last_name` varchar(255) NOT NULL,
-  `Email` varchar(255) NOT NULL,
+  `Email` text NOT NULL,
   `Phone_number` int(11) NOT NULL,
-  `Notes` varchar(255) NOT NULL
+  `role` varchar(50) NOT NULL DEFAULT 'user',
+  `Notes` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Dumping data for table `clients`
 --
 
-INSERT INTO `clients` (`Client_ID`, `Password`, `First_name`, `Last_name`, `Email`, `Phone_number`, `Notes`) VALUES
-(4, '$2y$10$UrN1Z52GqP2wKGxitfByfOCCzkH59umXY5O9oxiKoENH6kBmFjIN.', 'test', 'test', 'test@szy.bani', 501501501, 'test'),
-(5, '$2y$10$EsZhX7fkkhFi2A.Jn7m4SuBsbYaKOUEPupvBJLKw3ywLMkyjdvqZ.', 'test2', 'test2', 'test2@szy.bani', 502502502, 'test2');
+INSERT INTO `clients` (`Client_ID`, `Password`, `First_name`, `Last_name`, `Email`, `Phone_number`, `role`, `Notes`) VALUES
+(5, '$2y$10$EsZhX7fkkhFi2A.Jn7m4SuBsbYaKOUEPupvBJLKw3ywLMkyjdvqZ.', 'test2', 'test2', 'test2@szy.bani', 502502502, 'user', 'test2'),
+(9, '$2y$10$pitfqAQD3ljOAgLnUtUHw.BGW2H7H0D08HFJv5mECpMUCVAUL74mW', 'Szymon', 'Baniewicz', 'test@szy.bani', 501501501, 'admin', 'admin');
 
 -- --------------------------------------------------------
 
@@ -77,6 +79,7 @@ INSERT INTO `clients` (`Client_ID`, `Password`, `First_name`, `Last_name`, `Emai
 --
 
 CREATE TABLE `client_property` (
+  `client_property_ID` int(11) NOT NULL,
   `Property_ID` int(11) NOT NULL,
   `Client_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -224,6 +227,7 @@ ALTER TABLE `agents`
 -- Indeksy dla tabeli `agent_property`
 --
 ALTER TABLE `agent_property`
+  ADD PRIMARY KEY (`agents_property_ID`),
   ADD KEY `Agent_property_Agents` (`Agent_ID`),
   ADD KEY `Agent_property_Property` (`Property_ID`);
 
@@ -237,6 +241,7 @@ ALTER TABLE `clients`
 -- Indeksy dla tabeli `client_property`
 --
 ALTER TABLE `client_property`
+  ADD PRIMARY KEY (`client_property_ID`),
   ADD KEY `Client_property_Clients` (`Client_ID`),
   ADD KEY `Client_property_Property` (`Property_ID`);
 
@@ -305,10 +310,22 @@ ALTER TABLE `agents`
   MODIFY `Agent_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
+-- AUTO_INCREMENT for table `agent_property`
+--
+ALTER TABLE `agent_property`
+  MODIFY `agents_property_ID` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `clients`
 --
 ALTER TABLE `clients`
-  MODIFY `Client_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `Client_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `client_property`
+--
+ALTER TABLE `client_property`
+  MODIFY `client_property_ID` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `commissions_rent`
