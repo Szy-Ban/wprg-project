@@ -28,7 +28,7 @@ session_start();
             echo '<nav>';
             echo '<ul>';
             echo '<li><h1>Hello, ' . $_SESSION['first_name'] . '!</h1></li><br><br>';
-            echo '<li><a href="#">Profil</a></li>';
+            echo '<li><a href="profile.php">Profil</a></li>';
             echo '<li><a href="logout.php">Logout</a></li>';
             echo '</ul>';
             echo '</nav>';

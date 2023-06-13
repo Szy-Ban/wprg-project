@@ -22,6 +22,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $_SESSION['login_user'] = true;
             $_SESSION['client_id'] = $user['Client_ID'];
             $_SESSION['first_name'] = $user['First_name'];
+            $_SESSION['last_name'] = $user['Last_name'];
             $_SESSION['email'] = $email;
             header('location: index.php'); //przeniesienie do strony glownej
             exit;
