@@ -99,17 +99,17 @@ $stmt->close();
     <h2>Update your data - <?php echo $_SESSION['first_name']; ?> <?php echo $_SESSION['last_name']; ?></h2>
     <form method="POST" action="edit_profile.php">
         <label for="password">Password:</label><br>
-        <input type="password" id="password" name="password" value="<?php echo $user['Password']; ?>" ><br><br>
+        <input type="password" class="form-field" id="password" name="password" value="<?php echo $user['Password']; ?>" ><br><br>
         <label for="first_name">First Name:</label><br>
-        <input type="text" id="first_name" name="first_name" value="<?php echo $user['First_name']; ?>" required><br><br>
+        <input type="text" class="form-field" id="first_name" name="first_name" value="<?php echo $user['First_name']; ?>" required><br><br>
         <label for="last_name">Last Name:</label><br>
-        <input type="text" id="last_name" name="last_name" value="<?php echo $user['Last_name']; ?>" required><br><br>
+        <input type="text" class="form-field" id="last_name" name="last_name" value="<?php echo $user['Last_name']; ?>" required><br><br>
         <label for="email">Email:</label><br>
-        <input type="email" id="email" name="email" value="<?php echo htmlspecialchars($user['Email']); ?>" required><br><br>
+        <input type="email" class="form-field" id="email" name="email" value="<?php echo htmlspecialchars($user['Email']); ?>" required><br><br>
         <label for="phone_number">Phone Number:</label><br>
-        <input type="number" id="phone_number" name="phone_number" value="<?php echo $user['Phone_number']; ?>" required><br><br>
+        <input type="number" class="form-field" id="phone_number" name="phone_number" value="<?php echo $user['Phone_number']; ?>" required><br><br>
         <label for="notes">Notes:</label><br>
-        <textarea id="notes" name="notes"><?php echo htmlspecialchars($user['Notes']); ?></textarea><br><br>
+        <textarea id="notes" class="form-field" name="notes"><?php echo htmlspecialchars($user['Notes']); ?></textarea><br><br>
         <input type="submit" name="save_changes" value="Save Changes" class="form-button"><br><br>
     </form>
     <form method="POST" action="../profile.php">
