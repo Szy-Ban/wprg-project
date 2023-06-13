@@ -69,7 +69,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_account"])) { /
             <input type="submit" name="delete_account" value="Delete Account" class="form-button" onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.');"><br>
         </form>
         <h2> Manage tables [CRUD] </h2>
-        <form method="POST" action="manage_agents.php">
+        <form method="POST" action="../php/profile_options/manage_agents.php">
             <input type="submit" name="manage_agents" value="Manage Agents" class="form-button"><br><br>
         </form>
     </div>
