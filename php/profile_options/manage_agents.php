@@ -14,8 +14,18 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         // Kod do dodawania agenta
     } elseif (isset($_POST["edit_agent"])) {
         // Kod do edycji agenta
-    } elseif (isset($_POST["delete_agent"])) {
-        // Kod do usuwania agenta
+    } elseif (isset($_POST["delete_agent"])) { // usuwanie agenta
+        $agent_id = $_POST['agent_id'];
+
+        $query = "DELETE FROM agents WHERE Agent_ID = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $agent_id);
+        $stmt->execute();
+        $stmt->close();
+        
+        header("Location: manage_agents.php");
+        exit;
+
     } elseif (isset($_POST["search_agent"])) { // dodawanie agenta
         $searchAgentId = $_POST["agent_id"];
         $searchFirstName = $_POST["first_name"];
@@ -46,6 +56,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt->get_result();
         $agents = $result->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
+
+        header("Location: manage_agents.php");
+        exit;
     }
 }
 
