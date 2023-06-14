@@ -11,15 +11,14 @@ if (!isset($_SESSION['login_user']) || !$_SESSION['login_user']) {
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (isset($_POST["add_commission"])) { //dodawanie
-        $commission_id = $_POST['commission_id'];
         $sale_id = $_POST['sale_id'];
         $commission_rate = $_POST['commission_rate'];
         $profit = $_POST['profit'];
         $agent_id = $_POST['agent_id'];
 
-        $query = "INSERT INTO commissions_sale (Comission_ID, Sale_ID, Comission_rate, Profit, Agent_ID) VALUES (?, ?, ?, ?, ?)";
+        $query = "INSERT INTO commissions_sale (Sale_ID, Comission_rate, Profit, Agent_ID) VALUES (?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("iiddi", $commission_id, $sale_id, $commission_rate, $profit, $agent_id);
+        $stmt->bind_param("iddi", $sale_id, $commission_rate, $profit, $agent_id);
         $stmt->execute();
         $stmt->close();
 
@@ -137,7 +136,6 @@ if (!isset($_POST["search_commission"])) { // Pobranie listy prowizji z bazy dan
 <form id="add-commission-form" class="hidden" method="POST" action="manage_commissions_sale.php">
     <input type="hidden" name="add_commission">
     <h3> Add </h3>
-    <input class="form-field" type="text" name="commission_id" placeholder="Commission ID" required>
     <input class="form-field" type="text" name="sale_id" placeholder="Sale ID" required>
     <input class="form-field" type="text" name="commission_rate" placeholder="Commission Rate" required>
     <input class="form-field" type="text" name="profit" placeholder="Profit" required>
