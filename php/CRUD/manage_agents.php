@@ -24,9 +24,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         
         header("Location: manage_agents.php");
         exit;
+
+    } elseif (isset($_POST["edit_agent"])) { //edycja  agenta
+        $agent_id = $_POST['agent_id'];
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $phone_number = $_POST['phone_number'];
+
+        $query = "UPDATE agents SET First_name = ?, Last_name = ?, Email = ?, Phone_number = ? WHERE Agent_ID = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ssssi", $first_name, $last_name, $email, $phone_number, $agent_id);
+        $stmt->execute();
+        $stmt->close();
         
-    } elseif (isset($_POST["edit_agent"])) {
-        // Kod do edycji agenta
+        header("Location: manage_agents.php");
+        exit;
+
     } elseif (isset($_POST["delete_agent"])) { // usuwanie agenta
         $agent_id = $_POST['agent_id'];
 
