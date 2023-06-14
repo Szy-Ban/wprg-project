@@ -53,7 +53,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         header("Location: manage_agents.php");
         exit;
 
-    } elseif (isset($_POST["search_agent"])) { // dodawanie agenta
+    } elseif (isset($_POST["search_agent"])) { // szukanie agenta
         $searchAgentId = $_POST["agent_id"];
         $searchFirstName = $_POST["first_name"];
         $searchLastName = $_POST["last_name"];
@@ -188,7 +188,7 @@ if (!isset($_POST["search_agent"])) {
 
 <br><br>
 <div class="agents-list">
-    <table id="agents-table">
+    <table id="crud-table">
         <thead>
             <tr>
                 <th>ID</th>
