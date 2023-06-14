@@ -313,3 +313,22 @@ textarea {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     margin-top: 20px;
 }
+
+.hidden {
+ display: none;
+}
+
+.agents-table table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.agents-table th, td {
+    padding: 20px;
+    text-align: left;
+    border-bottom: 1px solid #ddd;
+}
+
+.agents-table th {
+    background-color: #f2f2f2;
+}

@@ -2,28 +2,62 @@
 session_start();
 require '../config.php';
 
+$error_message = "";
+
 if (!isset($_SESSION['login_user']) || !$_SESSION['login_user']) { 
     header("location: login.php");
     exit;
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["add_agent"])) { // Operacja dodawania agenta
+    if (isset($_POST["add_agent"])) {
         // Kod do dodawania agenta
-    } elseif (isset($_POST["edit_agent"])) { // Operacja edycji agenta
+    } elseif (isset($_POST["edit_agent"])) {
         // Kod do edycji agenta
-    } elseif (isset($_POST["delete_agent"])) { // Operacja usuwania agenta
+    } elseif (isset($_POST["delete_agent"])) {
         // Kod do usuwania agenta
+    } elseif (isset($_POST["search_agent"])) { // dodawanie agenta
+        $searchAgentId = $_POST["agent_id"];
+        $searchFirstName = $_POST["first_name"];
+        $searchLastName = $_POST["last_name"];
+        $searchEmail = $_POST["email"];
+        $searchPhoneNumber = $_POST["phone_number"];
+
+        $query = "SELECT * FROM agents WHERE 1=1"; // Warunek, ktory zawsze jest prawdziwy
+
+        if (!empty($searchAgentId)) {
+            $query .= " AND Agent_ID = '$searchAgentId'";
+        }
+        if (!empty($searchFirstName)) {
+            $query .= " AND First_name LIKE '%$searchFirstName%'";
+        }
+        if (!empty($searchLastName)) {
+            $query .= " AND Last_name LIKE '%$searchLastName%'";
+        }
+        if (!empty($searchEmail)) {
+            $query .= " AND Email LIKE '%$searchEmail%'";
+        }
+        if (!empty($searchPhoneNumber)) {
+            $query .= " AND Phone_number LIKE '%$searchPhoneNumber%'";
+        }
+
+        $stmt = $conn->prepare($query);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $agents = $result->fetch_all(MYSQLI_ASSOC);
+        $stmt->close();
     }
 }
 
-// Pobranie listy agentow z bazy danych
-$query = "SELECT * FROM agents";
-$stmt = $conn->prepare($query);
-$stmt->execute();
-$result = $stmt->get_result();
-$agents = $result->fetch_all(MYSQLI_ASSOC);
-$stmt->close();
+// Pobranie listy agentow z bazy danych, jesli nie wykonano wyszukiwania
+if (!isset($_POST["search_agent"])) {
+    $query = "SELECT * FROM agents";
+    $stmt = $conn->prepare($query);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $agents = $result->fetch_all(MYSQLI_ASSOC);
+    $stmt->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -66,15 +100,57 @@ $stmt->close();
     </div>
 </header>
 <div class="content-section">
-<div class="form-container-profile"> <!-- edycja + wyswietlenie wartosci domyslnych -->
+<div class="form-container-profile"> <!-- wszystkie przyciski do CRUD -->
 <h2> Manage Agents </h2>
 <form method="POST" action="manage_agents.php">
     <input type="button" id="add-agent-button" value="Add Agent" class="form-button"><br><br>
     <input type="button" id="edit-agent-button" value="Edit Agent" class="form-button"><br><br>
+    <input type="button" id="search-agent-button" value="Search Agent" class="form-button"><br><br>
     <input type="button" id="delete-agent-button" value="Delete Agent" class="form-button"><br><br><br>
 </form>
+
+<form id="add-agent-form" class="hidden" method="POST" action="manage_agents.php">
+    <input type="hidden" name="add_agent">
+    <h3> Add </h3>
+    <input class="form-field" type="text" name="first_name" placeholder="First Name" required>
+    <input class="form-field" type="text" name="last_name" placeholder="Last Name" required>
+    <input class="form-field" type="email" name="email" placeholder="Email" required>
+    <input class="form-field" type="text" name="phone_number" placeholder="Phone Number" required>
+    <input type="submit" class="form-button" value="Add Agent">
+</form>
+
+<form id="edit-agent-form" class="hidden" method="POST" action="manage_agents.php">
+    <input type="hidden" name="edit_agent">
+    <h3> Edit </h3>
+    <input class="form-field" type="text" name="agent_id" placeholder="Agent ID" required>
+    <input class="form-field" type="text" name="first_name" placeholder="First Name" required>
+    <input class="form-field" type="text" name="last_name" placeholder="Last Name" required>
+    <input class="form-field" type="email" name="email" placeholder="Email" required>
+    <input class="form-field" type="text" name="phone_number" placeholder="Phone Number" required>
+    <input type="submit" class="form-button" value="Edit Agent">
+</form>
+
+<form id="search-agent-form" class="hidden" method="POST" action="manage_agents.php">
+    <input type="hidden" name="search_agent">
+    <h3> Search </h3>
+    <input class="form-field" type="text" name="agent_id" placeholder="Agent ID">
+    <input class="form-field" type="text" name="first_name" placeholder="First Name">
+    <input class="form-field" type="text" name="last_name" placeholder="Last Name">
+    <input class="form-field" type="email" name="email" placeholder="Email">
+    <input class="form-field" type="text" name="phone_number" placeholder="Phone Number">
+    <input type="submit" class="form-button" value="Search Agent">
+</form>
+
+<form id="delete-agent-form" class="hidden" method="POST" action="manage_agents.php">
+    <input type="hidden" name="delete_agent">
+    <h3> Delete </h3>
+    <input class="form-field" type="text" name="agent_id" placeholder="Agent ID" required>
+    <input type="submit" class="form-button" value="Delete Agent">
+</form>
+
+<br><br>
 <div class="agents-list">
-    <table>
+    <table id="agents-table">
         <thead>
             <tr>
                 <th>ID</th>
@@ -98,6 +174,11 @@ $stmt->close();
         ?>
         </tbody>
     </table>
+    <?php
+        if ($error_message != "") {
+            echo "<div class='error-message'><h3>$error_message</h3></div>";
+        }
+    ?>
 </div>
 </div>
 </div>

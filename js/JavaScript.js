@@ -13,3 +13,38 @@ function toggleButton(buttonId) { //funkcja zmiany koloru przycisku, ich klasy  
       type.value = "1";
   }
 }
+
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-agent-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-agent-form').classList.remove('hidden');
+    document.getElementById('edit-agent-form').classList.add('hidden');
+    document.getElementById('delete-agent-form').classList.add('hidden');
+    document.getElementById('search-agent-form').classList.add('hidden');
+  });
+
+  document.getElementById('edit-agent-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-agent-form').classList.add('hidden');
+    document.getElementById('edit-agent-form').classList.remove('hidden');
+    document.getElementById('delete-agent-form').classList.add('hidden');
+    document.getElementById('search-agent-form').classList.add('hidden');
+  });
+
+  document.getElementById('delete-agent-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-agent-form').classList.add('hidden');
+    document.getElementById('edit-agent-form').classList.add('hidden');
+    document.getElementById('delete-agent-form').classList.remove('hidden');
+    document.getElementById('search-agent-form').classList.add('hidden');
+  });
+
+  document.getElementById('search-agent-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-agent-form').classList.add('hidden');
+    document.getElementById('edit-agent-form').classList.add('hidden');
+    document.getElementById('delete-agent-form').classList.add('hidden');
+    document.getElementById('search-agent-form').classList.remove('hidden');
+  });
+});
+

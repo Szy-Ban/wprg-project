@@ -88,7 +88,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         <h2>Login</h2>
         <form method="POST" action="login.php">
             <label for="email">Email:</label>
-            <input type="text" id="email" name="email" class="form-field">
+            <input type="email" id="email" name="email" class="form-field">
             <label for="password">Password:</label>
             <input type="password" id="password" name="password" class="form-field">
             <input type="submit" value="Login" class="form-button">
