@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 14, 2023 at 02:39 AM
+-- Generation Time: Cze 14, 2023 at 03:44 PM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -107,6 +107,13 @@ CREATE TABLE `commissions_rent` (
   `Agent_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `commissions_rent`
+--
+
+INSERT INTO `commissions_rent` (`Comission_ID`, `Rent_ID`, `Comission_rate`, `Profit`, `Agent_ID`) VALUES
+(1, 1, 0.99, 670.00, 2);
+
 -- --------------------------------------------------------
 
 --
@@ -120,6 +127,13 @@ CREATE TABLE `commissions_sale` (
   `Profit` float(6,2) NOT NULL,
   `Agent_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `commissions_sale`
+--
+
+INSERT INTO `commissions_sale` (`Comission_ID`, `Sale_ID`, `Comission_rate`, `Profit`, `Agent_ID`) VALUES
+(2, 2, 0.99, 5000.00, 1);
 
 -- --------------------------------------------------------
 
@@ -207,6 +221,13 @@ CREATE TABLE `rent` (
   `Lease_term` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `rent`
+--
+
+INSERT INTO `rent` (`Rent_ID`, `Property_ID`, `Renter_ID`, `Tenant_ID`, `Monthly_rent`, `Lease_term`) VALUES
+(1, 2, 9, 5, '950', '3 months');
+
 -- --------------------------------------------------------
 
 --
@@ -221,6 +242,13 @@ CREATE TABLE `sale` (
   `Buyer_ID` int(11) NOT NULL,
   `Seller_ID` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `sale`
+--
+
+INSERT INTO `sale` (`Sale_ID`, `Property_ID`, `Sale_price`, `Date`, `Buyer_ID`, `Seller_ID`) VALUES
+(2, 1, '5000', '14.06.2023', 5, 9);
 
 --
 -- Indeksy dla zrzutów tabel
@@ -340,13 +368,13 @@ ALTER TABLE `client_property`
 -- AUTO_INCREMENT for table `commissions_rent`
 --
 ALTER TABLE `commissions_rent`
-  MODIFY `Comission_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Comission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `commissions_sale`
 --
 ALTER TABLE `commissions_sale`
-  MODIFY `Comission_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Comission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `features`
@@ -370,13 +398,13 @@ ALTER TABLE `property`
 -- AUTO_INCREMENT for table `rent`
 --
 ALTER TABLE `rent`
-  MODIFY `Rent_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Rent_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `sale`
 --
 ALTER TABLE `sale`
-  MODIFY `Sale_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Sale_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- Constraints for dumped tables
