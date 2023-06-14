@@ -5,7 +5,7 @@ require '../config.php';
 $error_message = "";
 
 if (!isset($_SESSION['login_user']) || !$_SESSION['login_user']) { 
-    header("location: login.php");
+    header("location: ../login.php");
     exit;
 }
 
