@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 13, 2023 at 11:58 PM
+-- Generation Time: Cze 14, 2023 at 02:39 AM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -34,6 +34,15 @@ CREATE TABLE `agents` (
   `Email` varchar(255) NOT NULL,
   `Phone_number` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
+
+--
+-- Dumping data for table `agents`
+--
+
+INSERT INTO `agents` (`Agent_ID`, `First_name`, `Last_name`, `Email`, `Phone_number`) VALUES
+(1, 'Janusz', 'Kowalski', 'januszK@szy.bani', '601601601'),
+(2, 'Borys', 'Maslel', 'borysM@szy.bani', '602602602'),
+(4, 'test2', 'test2', 'testA2@szy.bani', '603603603');
 
 -- --------------------------------------------------------
 
@@ -307,7 +316,7 @@ ALTER TABLE `sale`
 -- AUTO_INCREMENT for table `agents`
 --
 ALTER TABLE `agents`
-  MODIFY `Agent_ID` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `Agent_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `agent_property`
