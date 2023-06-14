@@ -14,6 +14,7 @@ function toggleButton(buttonId) { //funkcja zmiany koloru przycisku, ich klasy  
   }
 }
 
+//search
 document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('add-agent-button').addEventListener('click', function(event) {
     event.preventDefault();
@@ -48,3 +49,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
   });
 });
 
+//features
+//features
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-feature-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-feature-form').classList.remove('hidden');
+    document.getElementById('edit-feature-form').classList.add('hidden');
+    document.getElementById('delete-feature-form').classList.add('hidden');
+    document.getElementById('search-feature-form').classList.add('hidden');
+  });
+
+  document.getElementById('edit-feature-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-feature-form').classList.add('hidden');
+    document.getElementById('edit-feature-form').classList.remove('hidden');
+    document.getElementById('delete-feature-form').classList.add('hidden');
+    document.getElementById('search-feature-form').classList.add('hidden');
+  });
+
+  document.getElementById('delete-feature-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-feature-form').classList.add('hidden');
+    document.getElementById('edit-feature-form').classList.add('hidden');
+    document.getElementById('delete-feature-form').classList.remove('hidden');
+    document.getElementById('search-feature-form').classList.add('hidden');
+  });
+
+  document.getElementById('search-feature-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-feature-form').classList.add('hidden');
+    document.getElementById('edit-feature-form').classList.add('hidden');
+    document.getElementById('delete-feature-form').classList.add('hidden');
+    document.getElementById('search-feature-form').classList.remove('hidden');
+  });
+});
