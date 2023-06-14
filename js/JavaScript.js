@@ -50,7 +50,6 @@ document.addEventListener('DOMContentLoaded', (event) => {
 });
 
 //features
-//features
 document.addEventListener('DOMContentLoaded', (event) => {
   document.getElementById('add-feature-button').addEventListener('click', function(event) {
     event.preventDefault();
@@ -84,3 +83,39 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('search-feature-form').classList.remove('hidden');
   });
 });
+
+//commissions
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-commission-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-commission-form').classList.remove('hidden');
+    document.getElementById('edit-commission-form').classList.add('hidden');
+    document.getElementById('delete-commission-form').classList.add('hidden');
+    document.getElementById('search-commission-form').classList.add('hidden');
+  });
+
+  document.getElementById('edit-commission-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-commission-form').classList.add('hidden');
+    document.getElementById('edit-commission-form').classList.remove('hidden');
+    document.getElementById('delete-commission-form').classList.add('hidden');
+    document.getElementById('search-commission-form').classList.add('hidden');
+  });
+
+  document.getElementById('delete-commission-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-commission-form').classList.add('hidden');
+    document.getElementById('edit-commission-form').classList.add('hidden');
+    document.getElementById('delete-commission-form').classList.remove('hidden');
+    document.getElementById('search-commission-form').classList.add('hidden');
+  });
+
+  document.getElementById('search-commission-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-commission-form').classList.add('hidden');
+    document.getElementById('edit-commission-form').classList.add('hidden');
+    document.getElementById('delete-commission-form').classList.add('hidden');
+    document.getElementById('search-commission-form').classList.remove('hidden');
+  });
+});
+
