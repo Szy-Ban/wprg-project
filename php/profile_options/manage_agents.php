@@ -10,8 +10,21 @@ if (!isset($_SESSION['login_user']) || !$_SESSION['login_user']) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["add_agent"])) {
-        // Kod do dodawania agenta
+    if (isset($_POST["add_agent"])) { //dodawanie agenta
+        $first_name = $_POST['first_name'];
+        $last_name = $_POST['last_name'];
+        $email = $_POST['email'];
+        $phone_number = $_POST['phone_number'];
+
+        $query = "INSERT INTO agents (First_name, Last_name, Email, Phone_number) VALUES (?, ?, ?, ?)";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("ssss", $first_name, $last_name, $email, $phone_number);
+        $stmt->execute();
+        $stmt->close();
+        
+        header("Location: manage_agents.php");
+        exit;
+        
     } elseif (isset($_POST["edit_agent"])) {
         // Kod do edycji agenta
     } elseif (isset($_POST["delete_agent"])) { // usuwanie agenta
@@ -57,8 +70,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $agents = $result->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
 
-        header("Location: manage_agents.php");
-        exit;
     }
 }
 
