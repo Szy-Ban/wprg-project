@@ -10,7 +10,7 @@ if (!isset($_SESSION['login_user']) || !$_SESSION['login_user']) {
 }
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    if (isset($_POST["add_commission"])) {
+    if (isset($_POST["add_commission"])) { //dodawanie
         $commission_id = $_POST['commission_id'];
         $sale_id = $_POST['sale_id'];
         $commission_rate = $_POST['commission_rate'];
@@ -25,7 +25,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: manage_commissions_sale.php");
         exit;
-    } elseif (isset($_POST["edit_commission"])) {
+    } elseif (isset($_POST["edit_commission"])) { // edytowanie
         $commission_id = $_POST['commission_id'];
         $sale_id = $_POST['sale_id'];
         $commission_rate = $_POST['commission_rate'];
@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: manage_commissions_sale.php");
         exit;
-    } elseif (isset($_POST["delete_commission"])) {
+    } elseif (isset($_POST["delete_commission"])) { //usuwanie
         $commission_id = $_POST['commission_id'];
 
         $query = "DELETE FROM commissions_sale WHERE Comission_ID = ?";
@@ -51,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
         header("Location: manage_commissions_sale.php");
         exit;
-    } elseif (isset($_POST["search_commission"])) {
+    } elseif (isset($_POST["search_commission"])) { // szukanie
         $searchCommissionId = $_POST["commission_id"];
         $searchSaleId = $_POST["sale_id"];
         $searchAgentId = $_POST["agent_id"];
@@ -76,7 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 }
 
-if (!isset($_POST["search_commission"])) {
+if (!isset($_POST["search_commission"])) { // Pobranie listy prowizji z bazy danych, jesli nie wykonano wyszukiwania
     $query = "SELECT * FROM commissions_sale";
     $stmt = $conn->prepare($query);
     $stmt->execute();
