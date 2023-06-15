@@ -18,6 +18,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_account"])) { /
         exit;
     }
 }
+
+// pobieranie roli użytkownika
+$stmt = $conn->prepare("SELECT role FROM Clients WHERE Client_ID = ?");
+$stmt->bind_param("i", $client_id);
+$stmt->execute();
+$result = $stmt->get_result();
+$user = $result->fetch_assoc();
+$role = $user['role'];
 ?>
 
 <!DOCTYPE html>
@@ -68,6 +76,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_account"])) { /
         <form method="POST" action="profile.php">
             <input type="submit" name="delete_account" value="Delete Account" class="form-button" onclick="return confirm('Are you sure you want to delete your account? This action cannot be undone.');"><br>
         </form>
+        <?php if ($role == 'admin') { ?>
         <h2> Manage tables [CRUD] </h2>
         <form method="POST" action="../php/CRUD/manage_agents.php">
             <input type="submit" name="manage_agents" value="Manage Agents" class="form-button"><br><br>
@@ -87,6 +96,19 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_account"])) { /
         <form method="POST" action="../php/CRUD/manage_sale.php">
             <input type="submit" name="manage_sale" value="Manage Sale" class="form-button"><br><br>
         </form>
+        <?php } ?>
+        <?php if ($role == 'user') { 
+        echo '<h2>User Information</h2>';
+        $stmt = $conn->prepare("SELECT * FROM Clients WHERE Client_ID = ?");
+        $stmt->bind_param("i", $client_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $user = $result->fetch_assoc();
+        echo '<p><b>First Name</b>: '.$user['First_name'].'</p>';
+        echo '<p><b>Last Name</b>: '.$user['Last_name'].'</p>';
+        echo '<p><b>Email</b>: '.$user['Email'].'</p>';
+        echo '<p><b>Notes</b>: '.$user['Notes'].'</p>';
+        }?>
     </div>
 </div>
 <footer>
