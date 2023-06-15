@@ -76,10 +76,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_account"])) { /
             <input type="submit" name="manage_features" value="Manage Features" class="form-button"><br><br>
         </form>
         <form method="POST" action="../php/CRUD/manage_commissions_sale.php">
-            <input type="submit" name="manage_features" value="Commisions - Sales" class="form-button"><br><br>
+            <input type="submit" name="manage_features" value="Manage Commisions - Sales" class="form-button"><br><br>
         </form>
         <form method="POST" action="../php/CRUD/manage_commissions_rent.php">
-            <input type="submit" name="manage_features" value="Commisions - Rents" class="form-button"><br><br>
+            <input type="submit" name="manage_features" value="Manage Commisions - Rents" class="form-button"><br><br>
+        </form>
+        <form method="POST" action="../php/CRUD/manage_rent.php">
+            <input type="submit" name="manage_rent" value="Manage Rent" class="form-button"><br><br>
         </form>
     </div>
 </div>

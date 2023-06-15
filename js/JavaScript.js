@@ -119,3 +119,37 @@ document.addEventListener('DOMContentLoaded', (event) => {
   });
 });
 
+//rent
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-rent-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-rent-form').classList.remove('hidden');
+    document.getElementById('edit-rent-form').classList.add('hidden');
+    document.getElementById('delete-rent-form').classList.add('hidden');
+    document.getElementById('search-rent-form').classList.add('hidden');
+  });
+
+  document.getElementById('edit-rent-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-rent-form').classList.add('hidden');
+    document.getElementById('edit-rent-form').classList.remove('hidden');
+    document.getElementById('delete-rent-form').classList.add('hidden');
+    document.getElementById('search-rent-form').classList.add('hidden');
+  });
+
+  document.getElementById('delete-rent-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-rent-form').classList.add('hidden');
+    document.getElementById('edit-rent-form').classList.add('hidden');
+    document.getElementById('delete-rent-form').classList.remove('hidden');
+    document.getElementById('search-rent-form').classList.add('hidden');
+  });
+
+  document.getElementById('search-rent-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-rent-form').classList.add('hidden');
+    document.getElementById('edit-rent-form').classList.add('hidden');
+    document.getElementById('delete-rent-form').classList.add('hidden');
+    document.getElementById('search-rent-form').classList.remove('hidden');
+  });
+});
