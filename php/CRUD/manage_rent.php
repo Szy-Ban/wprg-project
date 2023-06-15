@@ -217,5 +217,9 @@ if (!isset($_POST["search_rent"])) {
     </table>
     </div>
 </div>
+</div>
+<footer>
+    <p>&copy; 2023 Szymon Baniewicz - WPRG Project.</p>
+</footer>
 </body>
 </html>

@@ -153,3 +153,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('search-rent-form').classList.remove('hidden');
   });
 });
+
+//sale
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-sale-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-sale-form').classList.remove('hidden');
+    document.getElementById('edit-sale-form').classList.add('hidden');
+    document.getElementById('delete-sale-form').classList.add('hidden');
+    document.getElementById('search-sale-form').classList.add('hidden');
+  });
+
+  document.getElementById('edit-sale-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-sale-form').classList.add('hidden');
+    document.getElementById('edit-sale-form').classList.remove('hidden');
+    document.getElementById('delete-sale-form').classList.add('hidden');
+    document.getElementById('search-sale-form').classList.add('hidden');
+  });
+
+  document.getElementById('delete-sale-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-sale-form').classList.add('hidden');
+    document.getElementById('edit-sale-form').classList.add('hidden');
+    document.getElementById('delete-sale-form').classList.remove('hidden');
+    document.getElementById('search-sale-form').classList.add('hidden');
+  });
+
+  document.getElementById('search-sale-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-sale-form').classList.add('hidden');
+    document.getElementById('edit-sale-form').classList.add('hidden');
+    document.getElementById('delete-sale-form').classList.add('hidden');
+    document.getElementById('search-sale-form').classList.remove('hidden');
+  });
+});

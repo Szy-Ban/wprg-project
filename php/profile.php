@@ -84,6 +84,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_account"])) { /
         <form method="POST" action="../php/CRUD/manage_rent.php">
             <input type="submit" name="manage_rent" value="Manage Rent" class="form-button"><br><br>
         </form>
+        <form method="POST" action="../php/CRUD/manage_sale.php">
+            <input type="submit" name="manage_sale" value="Manage Sale" class="form-button"><br><br>
+        </form>
     </div>
 </div>
 <footer>
