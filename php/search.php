@@ -72,7 +72,7 @@ if(isset($_GET['city']) && isset($_GET['type'])){ //sprawdzenie czy pole  lub ty
         ?>
     </div>
     </header>
-    <section class="search-container">
+    <section class="search-container" id="searchContainer">
         <section class="search-section">
             <form action="search.php" method="GET">
                 <div class="search-buttons">

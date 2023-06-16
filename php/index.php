@@ -62,10 +62,10 @@ session_start();
     </section>
 </section>
     <section class="content-section"> <!-- sekcja opisowa strony -->
-
+        <section class="form-container-index">
         Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...<br>
         Curabitur et arcu vel orci vehicula sodales at sit amet nisl. Mauris ultricies varius pellentesque
-        
+    </section>
     </section>
     <footer> <!-- Stopka -->
         <p>&copy; 2023 Szymon Baniewicz - WPRG Project.</p>

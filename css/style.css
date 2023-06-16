@@ -15,7 +15,7 @@ body {  /* ogolne ustawienia dla calego body */
 
 header { /* ustawienia headera */
     /* background-color: #333; */
-    background-color: #1F6E8C;
+    background-color: #0E2954;
     color: #fff;
     padding: 20px;
     width: 100%;
@@ -103,7 +103,7 @@ nav ul li a {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     background-color: #fff;
     margin: auto;
-    border: #007aff 3px solid;
+    border: 8px #0E2954 double;
 }
 
 .search-buttons button { /* przyciski kategorii */
@@ -168,41 +168,43 @@ nav ul li a {
     flex-grow: 1;
     display: flex;
     justify-content: center;
-    background-color: aquamarine;
+    background-color: #2E8A99;
     padding: 50px;
     text-align: center;
     min-height: calc(100vh - 50px);
+    border-top: 3px white solid;
 }
 
 footer { /* stopka */
-    /* background-color: #333; */
-    background-color: #0E2954;
     color: #fff;
     padding: 10px;
     text-align: center;
     margin-top: auto;
     width: 100%;
+    background-color: #0E2954;
+    border-top: 3px white solid;
 }
 
 .content-section-houses {  /* sekcja wyswietlania domow */
     flex-grow: 1;
     display: flex;
-    background-color: aquamarine;
+    background-color: #2E8A99;
     padding: 50px;
     text-align: center;
     min-height: calc(100vh - 50px);
     flex-direction: column;
     align-items: center;
+    border-top: 3px white solid;
 }
 
 .property { /* kwadraty domow */
-    width: 300px; 
+    width: 400px; 
     max-height: 300px;
     background-color:white;
-    border: 2px solid blue;
+    border: 8px #0E2954 double;
     border-radius: 5px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    padding: 5px;
+    padding: 20px;
     margin: 10px;
     color: black;
 }
@@ -229,6 +231,7 @@ footer { /* stopka */
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     margin-top: 20px;
+    border: 8px #0E2954 double;
 }
 
 .form-container-register { /* formularze rejestracji */
@@ -241,6 +244,21 @@ footer { /* stopka */
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    margin-top: 20px;
+    border: 8px #0E2954 double;
+}
+
+.form-container-index { /* opis na index */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 70%;
+    min-width: 750px;
+    background-color: #fff;
+    padding: 50px;
+    border-radius: 5px;
+    box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
+    border: 8px #0E2954 double;
     margin-top: 20px;
 }
 
@@ -328,6 +346,7 @@ textarea {
     border-radius: 5px;
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     margin-top: 20px;
+    border: 8px #0E2954 double;
 }
 
 .hidden {
