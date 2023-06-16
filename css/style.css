@@ -14,10 +14,12 @@ body {  /* ogolne ustawienia dla calego body */
 }
 
 header { /* ustawienia headera */
-    background-color: #333;
+    /* background-color: #333; */
+    background-color: #1F6E8C;
     color: #fff;
     padding: 20px;
     width: 100%;
+    border-bottom: 3px white solid;
 }
 
 .header-container { /* pojemnik w headerze */
@@ -67,7 +69,10 @@ nav ul li a {
 }
 
 .search-container {  /* tlo wyszukiwania */
-    background-color: #6d0505; 
+    background-image: url('../img/City2.jpg');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
     padding: 50px; 
     text-align: center; 
     display: flex; 
@@ -75,6 +80,15 @@ nav ul li a {
     justify-content: center; 
     width: 100%;
     min-height: 70vh;
+    
+}
+
+.search-container-rent {
+    background-image: url('../img/City1.jpg');
+}
+
+.search-container-sale {
+    background-image: url('../img/City2.jpg');
 }
 
 .search-section { /* sekcja wyszukiwania */
@@ -89,6 +103,7 @@ nav ul li a {
     box-shadow: 0px 0px 10px 0px rgba(0,0,0,0.1);
     background-color: #fff;
     margin: auto;
+    border: #007aff 3px solid;
 }
 
 .search-buttons button { /* przyciski kategorii */
@@ -160,7 +175,8 @@ nav ul li a {
 }
 
 footer { /* stopka */
-    background-color: #333;
+    /* background-color: #333; */
+    background-color: #0E2954;
     color: #fff;
     padding: 10px;
     text-align: center;

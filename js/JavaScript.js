@@ -2,15 +2,20 @@ function toggleButton(buttonId) { //funkcja zmiany koloru przycisku, ich klasy  
   var buyButton = document.getElementById('buyButton');
   var rentButton = document.getElementById('rentButton');
   var type = document.getElementById('type');
+  var searchContainer = document.getElementById('searchContainer');
 
   if (buttonId === 'buyButton') {
       buyButton.classList.add('active');
       rentButton.classList.remove('active');
       type.value = "0"; //typ wyszukiwania, zakup czy wynajem
+      searchContainer.classList.remove('search-container-rent');
+      searchContainer.classList.add('search-container-sale');
   } else {
       rentButton.classList.add('active');
       buyButton.classList.remove('active');
       type.value = "1";
+      searchContainer.classList.remove('search-container-sale');
+      searchContainer.classList.add('search-container-rent');
   }
 }
 

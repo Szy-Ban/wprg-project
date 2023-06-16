@@ -46,7 +46,7 @@ session_start();
         ?>
     </div>
 </header>
-<section class="search-container"> <!-- tlo sekcji do szukania -->
+<section class="search-container" id="searchContainer"> <!-- tlo sekcji do szukania -->
     <section class="search-section"> <!-- sekcja do szukania -->
         <div class="search-buttons">
             <button class="button active" id="buyButton" onclick="toggleButton('buyButton')">Buy</button>
