@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Cze 14, 2023 at 03:44 PM
+-- Generation Time: Cze 17, 2023 at 03:20 AM
 -- Wersja serwera: 10.4.28-MariaDB
 -- Wersja PHP: 8.2.4
 
@@ -152,7 +152,8 @@ CREATE TABLE `features` (
 
 INSERT INTO `features` (`Feature_ID`, `Feature_type`) VALUES
 (1, 'No additional features'),
-(2, 'Dishwasher');
+(2, 'Dishwasher'),
+(3, 'Stunning location');
 
 -- --------------------------------------------------------
 
@@ -173,7 +174,8 @@ CREATE TABLE `features_description` (
 INSERT INTO `features_description` (`ID`, `Property_Property_ID`, `Features_Feature_ID`) VALUES
 (1, 1, 1),
 (2, 2, 1),
-(3, 3, 2);
+(3, 3, 2),
+(4, 3, 3);
 
 -- --------------------------------------------------------
 
@@ -192,7 +194,7 @@ CREATE TABLE `property` (
   `nr_rooms` int(11) NOT NULL,
   `nr_bedrooms` int(11) NOT NULL,
   `nr_bathrooms` int(11) NOT NULL,
-  `Feature` int(11) NOT NULL,
+  `Feature` int(11) DEFAULT 1,
   `Description` varchar(255) NOT NULL,
   `Price` float NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
@@ -374,19 +376,19 @@ ALTER TABLE `commissions_rent`
 -- AUTO_INCREMENT for table `commissions_sale`
 --
 ALTER TABLE `commissions_sale`
-  MODIFY `Comission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Comission_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `features`
 --
 ALTER TABLE `features`
-  MODIFY `Feature_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `Feature_ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `features_description`
 --
 ALTER TABLE `features_description`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `property`
