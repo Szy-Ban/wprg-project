@@ -62,6 +62,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt->get_result();
         $features = $result->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
+
+        if (empty($features)) {
+            $error_message = "No record in base.";
+        }
     }
 }
 
@@ -156,6 +160,9 @@ if (!isset($_POST["search_feature"])) {
 </form>
 
 <br><br>
+<?php if (!empty($error_message)) { ?>
+        <p class="error"><?php echo "<div class='error-message'><h3>$error_message</h3></div>"; ?></p>
+    <?php } else { ?>
 <div class="features-list">
     <table id="crud-table">
         <thead>
@@ -175,11 +182,7 @@ if (!isset($_POST["search_feature"])) {
         ?>
         </tbody>
     </table>
-    <?php
-        if ($error_message != "") {
-            echo "<div class='error-message'><h3>$error_message</h3></div>";
-        }
-    ?>
+    <?php } ?>
 </div>
 </div>
 </div>

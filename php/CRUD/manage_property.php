@@ -158,7 +158,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
 
         if (empty($properties)) {
-            $error_message = "Nie ma takiego rekordu w bazie.";
+            $error_message = "No record in base.";
         }
     }
 }

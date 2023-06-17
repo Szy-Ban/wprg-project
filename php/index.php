@@ -54,7 +54,7 @@ session_start();
         </div>
         <div class="search-bar"> <!--pole do szukania, formularz i przechodzenie do podstrony wyszukiwania -->
             <form action="search.php" method="GET">
-                <input type="text" name="city" placeholder="Search for your dream property | Enter city">
+                <input type="text" name="city" placeholder="Enter city">
                 <input type="hidden" id="type" name="type" value="0">
                 <button type="submit">Search</button>
             </form>

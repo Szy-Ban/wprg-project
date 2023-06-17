@@ -89,6 +89,10 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $result = $stmt->get_result();
         $rents = $result->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
+
+        if (empty($rents)) {
+            $error_message = "No record in base.";
+        }
     }
 }
 
@@ -192,6 +196,9 @@ if (!isset($_POST["search_rent"])) {
     <input type="submit" class="form-button" value="Delete Rent">
     </form>
     <br><br>
+    <?php if (!empty($error_message)) { ?>
+        <p class="error"><?php echo "<div class='error-message'><h3>$error_message</h3></div>"; ?></p>
+    <?php } else { ?>
     <div id='rent-list'>
     <table id="crud-table">
         <tr>
@@ -216,6 +223,7 @@ if (!isset($_POST["search_rent"])) {
         ?>
     </table>
     </div>
+    <?php } ?>
 </div>
 </div>
 <footer>
