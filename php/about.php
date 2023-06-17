@@ -1,21 +1,18 @@
-<?php
-session_start();
-?>
 <!DOCTYPE html>
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <title>Real Estate Company</title>
+    <title>Real Estate Company - Profile</title>
     <script src="../js/JavaScript.js"></script>
 </head>
 <body>
-<header>  <!-- naglowek -->
-<div class="header-container">
+<header> <!-- naglowek -->
+    <div class="header-container">
         <div class="left-nav">
-        <img src="../img/logo.png">
+            <img src="../img/logo.png">
             <nav>
                 <ul>
-                <li><h1>Real Estate Company</h1></li><br><br>
+                    <li><h1>Real Estate Company</h1></li><br><br>
                     <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About</a></li>
                     <li><a href="contact.php">Contact</a></li>
@@ -46,29 +43,14 @@ session_start();
         ?>
     </div>
 </header>
-<section class="search-container" id="searchContainer"> <!-- tlo sekcji do szukania -->
-    <section class="search-section"> <!-- sekcja do szukania -->
-        <div class="search-buttons">
-            <button class="button active" id="buyButton" onclick="toggleButton('buyButton')">Buy</button>
-            <button class="button" id="rentButton" onclick="toggleButton('rentButton')">Rent</button>
-        </div>
-        <div class="search-bar"> <!--pole do szukania, formularz i przechodzenie do podstrony wyszukiwania -->
-            <form action="search.php" method="GET">
-                <input type="text" name="city" placeholder="Search for your dream property | Enter city">
-                <input type="hidden" id="type" name="type" value="0">
-                <button type="submit">Search</button>
-            </form>
-        </div>
-    </section>
-</section>
-    <section class="content-section"> <!-- sekcja opisowa strony -->
+<section class="content-section"> <!-- sekcja opisowa strony -->
         <section class="form-container-index">
         Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...<br>
         Curabitur et arcu vel orci vehicula sodales at sit amet nisl. Mauris ultricies varius pellentesque
     </section>
     </section>
-    <footer> <!-- Stopka -->
-        <p>&copy; 2023 Szymon Baniewicz - WPRG Project.</p>
-    </footer>
+<footer>
+    <p>&copy; 2023 Szymon Baniewicz - WPRG Project.</p>
+</footer>
 </body>
 </html>

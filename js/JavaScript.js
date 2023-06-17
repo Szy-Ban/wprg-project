@@ -22,19 +22,20 @@ function toggleButton(buttonId) { //funkcja zmiany koloru przycisku, ich klasy  
 window.onload = function() { //aby przycisk pozostal zaznaczony po wyszukaniu
   var url = new URL(window.location.href);
   var type = url.searchParams.get("type");
-
-  if (type === '0') {
-      document.getElementById('buyButton').classList.add('active');
-      document.getElementById('rentButton').classList.remove('active');
-      document.getElementById('type').value = "0";
-      document.getElementById('searchContainer').classList.remove('search-container-rent');
-      document.getElementById('searchContainer').classList.add('search-container-sale');
-  } else {
-      document.getElementById('rentButton').classList.add('active');
-      document.getElementById('buyButton').classList.remove('active');
-      document.getElementById('type').value = "1";
-      document.getElementById('searchContainer').classList.remove('search-container-sale');
-      document.getElementById('searchContainer').classList.add('search-container-rent');
+  if (type !== null) {
+    if (type === '0') {
+        document.getElementById('buyButton').classList.add('active');
+        document.getElementById('rentButton').classList.remove('active');
+        document.getElementById('type').value = "0";
+        document.getElementById('searchContainer').classList.remove('search-container-rent');
+        document.getElementById('searchContainer').classList.add('search-container-sale');
+    } else {
+        document.getElementById('rentButton').classList.add('active');
+        document.getElementById('buyButton').classList.remove('active');
+        document.getElementById('type').value = "1";
+        document.getElementById('searchContainer').classList.remove('search-container-sale');
+        document.getElementById('searchContainer').classList.add('search-container-rent');
+    }
   }
 };
 
