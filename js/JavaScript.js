@@ -213,3 +213,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('search-sale-form').classList.remove('hidden');
   });
 });
+
+//property
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-property-form').classList.remove('hidden');
+    document.getElementById('edit-property-form').classList.add('hidden');
+    document.getElementById('delete-property-form').classList.add('hidden');
+    document.getElementById('search-property-form').classList.add('hidden');
+  });
+
+  document.getElementById('edit-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-property-form').classList.add('hidden');
+    document.getElementById('edit-property-form').classList.remove('hidden');
+    document.getElementById('delete-property-form').classList.add('hidden');
+    document.getElementById('search-property-form').classList.add('hidden');
+  });
+
+  document.getElementById('delete-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-property-form').classList.add('hidden');
+    document.getElementById('edit-property-form').classList.add('hidden');
+    document.getElementById('delete-property-form').classList.remove('hidden');
+    document.getElementById('search-property-form').classList.add('hidden');
+  });
+
+  document.getElementById('search-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-property-form').classList.add('hidden');
+    document.getElementById('edit-property-form').classList.add('hidden');
+    document.getElementById('delete-property-form').classList.add('hidden');
+    document.getElementById('search-property-form').classList.remove('hidden');
+  });
+});

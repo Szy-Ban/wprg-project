@@ -81,7 +81,7 @@ if(isset($_GET['city']) && isset($_GET['type'])){ //sprawdzenie czy pole  lub ty
                     <input id="type" type="hidden" name="type" value="0">
                 </div>
                 <div class="search-bar">
-                    <input type="text" name="city" placeholder="Search for your dream property | Enter city">
+                    <input type="text" name="city" placeholder="Enter city">
                     <button type="submit">Search</button>
                 </div>
             </form>

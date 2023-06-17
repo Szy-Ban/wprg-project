@@ -340,7 +340,9 @@ textarea {
     display: flex;
     flex-direction: column;
     align-items: center;
-    width: 750px;
+    width: 95%;
+    /* width: 750px; */
+    min-width: 1200px;
     min-height: 330px;
     background-color: #fff;
     padding: 20px;
