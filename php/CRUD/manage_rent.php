@@ -34,26 +34,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $monthly_rent = $_POST['monthly_rent'];
         $lease_term = $_POST['lease_term'];
 
-        $query = "UPDATE rent SET Property_ID = ?, Renter_ID = ?, Tenant_ID = ?, Monthly_rent = ?, Lease_term = ? WHERE Rent_ID = ?";
+        $query = "SELECT * FROM rent WHERE Rent_ID = ? AND Renter_ID = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("iiissi", $property_id, $renter_id, $tenant_id, $monthly_rent, $lease_term, $rent_id);
+        $stmt->bind_param("ii", $rent_id, $_SESSION['login_user']);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $rent = $result->fetch_assoc();
         $stmt->close();
-        
-        header("Location: manage_rent.php");
-        exit;
+
+        if ($rent) {
+            $query = "UPDATE rent SET Property_ID = ?, Renter_ID = ?, Tenant_ID = ?, Monthly_rent = ?, Lease_term = ? WHERE Rent_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("iiissi", $property_id, $renter_id, $tenant_id, $monthly_rent, $lease_term, $rent_id);
+            $stmt->execute();
+            $stmt->close();
+            
+            header("Location: manage_rent.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
 
     } elseif (isset($_POST["delete_rent"])) { // usuwanie najmu
         $rent_id = $_POST['rent_id'];
 
-        $query = "DELETE FROM rent WHERE Rent_ID = ?";
+        $query = "SELECT * FROM rent WHERE Rent_ID = ? AND Renter_ID = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $rent_id);
+        $stmt->bind_param("ii", $rent_id, $_SESSION['login_user']);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $rent = $result->fetch_assoc();
         $stmt->close();
-        
-        header("Location: manage_rent.php");
-        exit;
+
+        if ($rent) {
+            $query = "DELETE FROM rent WHERE Rent_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $rent_id);
+            $stmt->execute();
+            $stmt->close();
+            
+            header("Location: manage_rent.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
 
     } elseif (isset($_POST["search_rent"])) { // szukanie najmu
         $searchRentId = $_POST["rent_id"];

@@ -32,26 +32,48 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $email = $_POST['email'];
         $phone_number = $_POST['phone_number'];
 
-        $query = "UPDATE agents SET First_name = ?, Last_name = ?, Email = ?, Phone_number = ? WHERE Agent_ID = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("ssssi", $first_name, $last_name, $email, $phone_number, $agent_id);
-        $stmt->execute();
-        $stmt->close();
-        
-        header("Location: manage_agents.php");
-        exit;
-
-    } elseif (isset($_POST["delete_agent"])) { // usuwanie agenta
-        $agent_id = $_POST['agent_id'];
-
-        $query = "DELETE FROM agents WHERE Agent_ID = ?";
+        $query = "SELECT * FROM agents WHERE Agent_ID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $agent_id);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $agent = $result->fetch_assoc();
         $stmt->close();
-        
-        header("Location: manage_agents.php");
-        exit;
+
+        if ($agent) {
+            $query = "UPDATE agents SET First_name = ?, Last_name = ?, Email = ?, Phone_number = ? WHERE Agent_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("ssssi", $first_name, $last_name, $email, $phone_number, $agent_id);
+            $stmt->execute();
+            $stmt->close();
+
+            header("Location: manage_agents.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
+
+    } elseif (isset($_POST["delete_agent"])) { // usuwanie agenta
+        $query = "SELECT * FROM agents WHERE Agent_ID = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $agent_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $agent = $result->fetch_assoc();
+        $stmt->close();
+
+        if ($agent) {
+            $query = "DELETE FROM agents WHERE Agent_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $agent_id);
+            $stmt->execute();
+            $stmt->close();
+
+            header("Location: manage_agents.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
 
     } elseif (isset($_POST["search_agent"])) { // szukanie agenta
         $searchAgentId = $_POST["agent_id"];
@@ -84,6 +106,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $agents = $result->fetch_all(MYSQLI_ASSOC);
         $stmt->close();
 
+        if (empty($agents)) {
+            $error_message = "No record in base.";
+        }
     }
 }
 
@@ -187,6 +212,9 @@ if (!isset($_POST["search_agent"])) {
 </form>
 
 <br><br>
+<?php if (!empty($error_message)) { ?>
+        <p class="error"><?php echo "<div class='error-message'><h3>$error_message</h3></div>"; ?></p>
+    <?php } else { ?>
 <div class="agents-list">
     <table id="crud-table">
         <thead>
@@ -212,12 +240,8 @@ if (!isset($_POST["search_agent"])) {
         ?>
         </tbody>
     </table>
-    <?php
-        if ($error_message != "") {
-            echo "<div class='error-message'><h3>$error_message</h3></div>";
-        }
-    ?>
-</div>
+    </div>
+    <?php } ?>
 </div>
 </div>
 <footer>

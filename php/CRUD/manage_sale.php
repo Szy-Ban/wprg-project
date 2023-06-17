@@ -34,26 +34,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $buyer_id = $_POST['buyer_id'];
         $seller_id = $_POST['seller_id'];
 
-        $query = "UPDATE sale SET Property_ID = ?, Sale_price = ?, Date = ?, Buyer_ID = ?, Seller_ID = ? WHERE Sale_ID = ?";
+        $query = "SELECT * FROM sale WHERE Sale_ID = ? AND Seller_ID = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("issiii", $property_id, $sale_price, $date, $buyer_id, $seller_id, $sale_id);
+        $stmt->bind_param("ii", $sale_id, $_SESSION['login_user']);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $sale = $result->fetch_assoc();
         $stmt->close();
-        
-        header("Location: manage_sale.php");
-        exit;
+
+        if ($sale) {
+            $query = "UPDATE sale SET Property_ID = ?, Sale_price = ?, Date = ?, Buyer_ID = ?, Seller_ID = ? WHERE Sale_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("issiii", $property_id, $sale_price, $date, $buyer_id, $seller_id, $sale_id);
+            $stmt->execute();
+            $stmt->close();
+            
+            header("Location: manage_sale.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
 
     } elseif (isset($_POST["delete_sale"])) { // usuwanie sprzedazy
         $sale_id = $_POST['sale_id'];
 
-        $query = "DELETE FROM sale WHERE Sale_ID = ?";
+        $query = "SELECT * FROM sale WHERE Sale_ID = ? AND Seller_ID = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $sale_id);
+        $stmt->bind_param("ii", $sale_id, $_SESSION['login_user']);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $sale = $result->fetch_assoc();
         $stmt->close();
-        
-        header("Location: manage_sale.php");
-        exit;
+
+        if ($sale) {
+            $query = "DELETE FROM sale WHERE Sale_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $sale_id);
+            $stmt->execute();
+            $stmt->close();
+            
+            header("Location: manage_sale.php");
+            exit;
+        } else {
+            $$error_message = "No record in base.";
+        }
 
     } elseif (isset($_POST["search_sale"])) { // szukanie sprzedazy
         $searchSaleId = $_POST["sale_id"];

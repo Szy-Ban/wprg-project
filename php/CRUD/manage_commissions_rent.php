@@ -31,25 +31,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $profit = $_POST['profit'];
         $agent_id = $_POST['agent_id'];
 
-        $query = "UPDATE commissions_rent SET Rent_ID = ?, Comission_rate = ?, Profit = ?, Agent_ID = ? WHERE Comission_ID = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("idddi", $rent_id, $commission_rate, $profit, $agent_id, $commission_id);
-        $stmt->execute();
-        $stmt->close();
-
-        header("Location: manage_commissions_rent.php");
-        exit;
-    } elseif (isset($_POST["delete_commission"])) { // Usuwanie
-        $commission_id = $_POST['commission_id'];
-
-        $query = "DELETE FROM commissions_rent WHERE Comission_ID = ?";
+        $query = "SELECT * FROM commissions_rent WHERE Comission_ID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $commission_id);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $commission = $result->fetch_assoc();
         $stmt->close();
 
-        header("Location: manage_commissions_rent.php");
-        exit;
+        if ($commission) {
+            $query = "UPDATE commissions_rent SET Rent_ID = ?, Comission_rate = ?, Profit = ?, Agent_ID = ? WHERE Comission_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("idddi", $rent_id, $commission_rate, $profit, $agent_id, $commission_id);
+            $stmt->execute();
+            $stmt->close();
+
+            header("Location: manage_commissions_rent.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
+    } elseif (isset($_POST["delete_commission"])) { // Usuwanie
+        $commission_id = $_POST['commission_id'];
+
+        $query = "SELECT * FROM commissions_rent WHERE Comission_ID = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $commission_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $commission = $result->fetch_assoc();
+        $stmt->close();
+
+        if ($commission) {
+            $query = "DELETE FROM commissions_rent WHERE Comission_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $commission_id);
+            $stmt->execute();
+            $stmt->close();
+
+            header("Location: manage_commissions_rent.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
+
     } elseif (isset($_POST["search_commission"])) { // Wyszukiwanie
         $searchCommissionId = $_POST["commission_id"];
         $searchRentId = $_POST["rent_id"];

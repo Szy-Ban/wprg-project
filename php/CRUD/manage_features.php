@@ -25,25 +25,49 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $feature_id = $_POST['feature_id'];
         $feature_type = $_POST['feature_type'];
 
-        $query = "UPDATE features SET Feature_type = ? WHERE Feature_ID = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("si", $feature_type, $feature_id);
-        $stmt->execute();
-        $stmt->close();
-        
-        header("Location: manage_features.php");
-        exit;
-    } elseif (isset($_POST["delete_feature"])) { //usuwanie
-        $feature_id = $_POST['feature_id'];
-
-        $query = "DELETE FROM features WHERE Feature_ID = ?";
+        $query = "SELECT * FROM features WHERE Feature_ID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $feature_id);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $feature = $result->fetch_assoc();
         $stmt->close();
-        
-        header("Location: manage_features.php");
-        exit;
+
+        if ($feature) {
+            $query = "UPDATE features SET Feature_type = ? WHERE Feature_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("si", $feature_type, $feature_id);
+            $stmt->execute();
+            $stmt->close();
+
+            header("Location: manage_features.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
+    } elseif (isset($_POST["delete_feature"])) { //usuwanie
+        $feature_id = $_POST['feature_id'];
+
+        $query = "SELECT * FROM features WHERE Feature_ID = ?";
+        $stmt = $conn->prepare($query);
+        $stmt->bind_param("i", $feature_id);
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $feature = $result->fetch_assoc();
+        $stmt->close();
+
+        if ($feature) {
+            $query = "DELETE FROM features WHERE Feature_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $feature_id);
+            $stmt->execute();
+            $stmt->close();
+
+            header("Location: manage_features.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
     } elseif (isset($_POST["search_feature"])) { // wyszukiwanie
         $searchFeatureId = $_POST["feature_id"];
         $searchFeatureType = $_POST["feature_type"];

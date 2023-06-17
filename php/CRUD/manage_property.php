@@ -48,26 +48,50 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $description = $_POST['description'];
         $price = $_POST['price'];
 
-        $query = "UPDATE property SET Type = ?, PType = ?, City = ?, Address = ?, ZIP_Code = ?, Square_meters = ?, nr_rooms = ?, nr_bedrooms = ?, nr_bathrooms = ?, Feature = ?, Description = ?, Price = ? WHERE Property_ID = ?";
+        $query = "SELECT * FROM property WHERE Property_ID = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("issssdiiiiisi", $type, $ptype, $city, $address, $zip_code, $square_meters, $nr_rooms, $nr_bedrooms, $nr_bathrooms, $feature, $description, $price, $property_id);
+        $stmt->bind_param("i", $property_id);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $property = $result->fetch_assoc();
         $stmt->close();
-        
-        header("Location: manage_property.php");
-        exit;
+
+        if ($property) {
+            $query = "UPDATE property SET Type = ?, PType = ?, City = ?, Address = ?, ZIP_Code = ?, Square_meters = ?, nr_rooms = ?, nr_bedrooms = ?, nr_bathrooms = ?, Feature = ?, Description = ?, Price = ? WHERE Property_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("issssdiiiiisi", $type, $ptype, $city, $address, $zip_code, $square_meters, $nr_rooms, $nr_bedrooms, $nr_bathrooms, $feature, $description, $price, $property_id);
+            $stmt->execute();
+            $stmt->close();
+
+            header("Location: manage_property.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
 
     } elseif (isset($_POST["delete_property"])) { // usuwanie nieruchomości
         $property_id = $_POST['property_id'];
 
-        $query = "DELETE FROM property WHERE Property_ID = ?";
+        $query = "SELECT * FROM property WHERE Property_ID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $property_id);
         $stmt->execute();
+        $result = $stmt->get_result();
+        $property = $result->fetch_assoc();
         $stmt->close();
-        
-        header("Location: manage_property.php");
-        exit;
+
+        if ($property) {
+            $query = "DELETE FROM property WHERE Property_ID = ?";
+            $stmt = $conn->prepare($query);
+            $stmt->bind_param("i", $property_id);
+            $stmt->execute();
+            $stmt->close();
+
+            header("Location: manage_property.php");
+            exit;
+        } else {
+            $error_message = "No record in base.";
+        }
 
     } elseif (isset($_POST["search_property"])) { // szukanie nieruchomości
         $searchPropertyId = $_POST["property_id"];
