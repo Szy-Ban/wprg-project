@@ -128,8 +128,8 @@ if (!isset($_POST["search_commission"])) { // Pobranie listy prowizji z bazy dan
                 <ul>
                     <li><h1>Real Estate Company</h1></li><br><br>
                     <li><a href="../index.php">Home</a></li>
-                    <li><a href="#">About</a></li>
-                    <li><a href="#">Contact</a></li>
+                    <li><a href="about.php">About</a></li>
+                    <li><a href="contact.php">Contact</a></li>
                 </ul>
             </nav>
         </div>
