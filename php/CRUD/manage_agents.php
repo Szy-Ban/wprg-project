@@ -54,25 +54,41 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         }
 
     } elseif (isset($_POST["delete_agent"])) { // usuwanie agenta
-        $query = "SELECT * FROM agents WHERE Agent_ID = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $agent_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $agent = $result->fetch_assoc();
-        $stmt->close();
+        $agent_id = $_POST['agent_id'];
 
-        if ($agent) {
-            $query = "DELETE FROM agents WHERE Agent_ID = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("i", $agent_id);
-            $stmt->execute();
-            $stmt->close();
+        // Check if the agent exists
+        $checkAgentQuery = "SELECT * FROM agents WHERE Agent_ID = ?";
+        $checkAgentStmt = $conn->prepare($checkAgentQuery);
+        $checkAgentStmt->bind_param("i", $agent_id);
+        $checkAgentStmt->execute();
+        $checkAgentResult = $checkAgentStmt->get_result();
+        $agentExists = $checkAgentResult->num_rows > 0;
+        $checkAgentStmt->close();
 
-            header("Location: manage_agents.php");
-            exit;
-        } else {
-            $error_message = "No record in base.";
+        if (!$agentExists) {
+            $error_message = "Agent not found.";
+        }else{
+            // czy w agent_property table
+            $checkAssociatedQuery = "SELECT * FROM agent_property WHERE Agent_ID = ?";
+            $checkAssociatedStmt = $conn->prepare($checkAssociatedQuery);
+            $checkAssociatedStmt->bind_param("i", $agent_id);
+            $checkAssociatedStmt->execute();
+            $checkAssociatedResult = $checkAssociatedStmt->get_result();
+            $associatedRecords = $checkAssociatedResult->num_rows;
+            $checkAssociatedStmt->close();
+
+            if ($associatedRecords > 0) {
+                $error_message = "Cannot delete the agent. Associated records exist in the agent_property table.";
+            } else {
+                $deleteQuery = "DELETE FROM agents WHERE Agent_ID = ?";
+                $deleteStmt = $conn->prepare($deleteQuery);
+                $deleteStmt->bind_param("i", $agent_id);
+                $deleteStmt->execute();
+                $deleteStmt->close();
+                header("Location: manage_agents.php");
+                exit;
+                
+            }
         }
 
     } elseif (isset($_POST["search_agent"])) { // szukanie agenta
