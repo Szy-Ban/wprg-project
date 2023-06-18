@@ -283,3 +283,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('search-client-form').classList.remove('hidden');
   });
 });
+
+//agent-property
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-agent-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-agent-property-form').classList.remove('hidden');
+    document.getElementById('edit-agent-property-form').classList.add('hidden');
+    document.getElementById('delete-agent-property-form').classList.add('hidden');
+    document.getElementById('search-agent-property-form').classList.add('hidden');
+  });
+
+  document.getElementById('edit-agent-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-agent-property-form').classList.add('hidden');
+    document.getElementById('edit-agent-property-form').classList.remove('hidden');
+    document.getElementById('delete-agent-property-form').classList.add('hidden');
+    document.getElementById('search-agent-property-form').classList.add('hidden');
+  });
+
+  document.getElementById('delete-agent-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-agent-property-form').classList.add('hidden');
+    document.getElementById('edit-agent-property-form').classList.add('hidden');
+    document.getElementById('delete-agent-property-form').classList.remove('hidden');
+    document.getElementById('search-agent-property-form').classList.add('hidden');
+  });
+
+  document.getElementById('search-agent-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-agent-property-form').classList.add('hidden');
+    document.getElementById('edit-agent-property-form').classList.add('hidden');
+    document.getElementById('delete-agent-property-form').classList.add('hidden');
+    document.getElementById('search-agent-property-form').classList.remove('hidden');
+  });
+});

@@ -102,6 +102,10 @@ $role = $user['role'];
         <form method="POST" action="../php/CRUD/manage_clients.php">
             <input type="submit" name="manage_clients" value="Manage Clients" class="form-button"><br><br>
         </form>
+        <h2> Associative tables [CRUD] </h2>
+        <form method="POST" action="../php/CRUD/manage_agent_property.php">
+            <input type="submit" name="manage_agent_property" value="Manage Agent - Property" class="form-button"><br><br>
+        </form>
         <?php } ?>
         <?php if ($role == 'user') { 
         echo '<h2>User Information</h2>';
