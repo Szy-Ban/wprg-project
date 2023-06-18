@@ -199,6 +199,7 @@ $stmtSold->close();
         <?php if (!empty($propertiesBought)) { ?>
             <h2>Properties Bought</h2>
             <table id="crud-table">
+            <thead>
                 <tr>
                     <th>Property ID</th>
                     <th>Type</th>
@@ -213,6 +214,8 @@ $stmtSold->close();
                     <th>Description</th>
                     <th>Price</th>
                 </tr>
+            </thead>
+            <tbody>
                 <?php foreach ($propertiesBought as $property) { ?>
                     <tr>
                         <td><?php echo $property['Property_ID']; ?></td>
@@ -229,12 +232,14 @@ $stmtSold->close();
                         <td><?php echo $property['Price']; ?></td>
                     </tr>
                 <?php } ?>
+            </tbody>
             </table>
         <?php } ?>
 
         <?php if (!empty($propertiesRented)) { ?>
             <h2>Properties Rented</h2>
             <table id="crud-table">
+            <thead>
                 <tr>
                     <th>Property ID</th>
                     <th>Type</th>
@@ -249,6 +254,8 @@ $stmtSold->close();
                     <th>Description</th>
                     <th>Price</th>
                 </tr>
+            </thead>
+            <tbody>
                 <?php foreach ($propertiesRented as $property) { ?>
                     <tr>
                         <td><?php echo $property['Property_ID']; ?></td>
@@ -265,12 +272,14 @@ $stmtSold->close();
                         <td><?php echo $property['Price']; ?></td>
                     </tr>
                 <?php } ?>
+                </tbody>
             </table>
         <?php } ?>
 
         <?php if (!empty($propertiesRentedOut)) { ?>
             <h2>Properties Rented Out</h2>
             <table id="crud-table">
+            <thead>
                 <tr>
                     <th>Property ID</th>
                     <th>Type</th>
@@ -285,6 +294,8 @@ $stmtSold->close();
                     <th>Description</th>
                     <th>Price</th>
                 </tr>
+            </thead>
+            <tbody>
                 <?php foreach ($propertiesRentedOut as $property) { ?>
                     <tr>
                         <td><?php echo $property['Property_ID']; ?></td>
@@ -301,12 +312,14 @@ $stmtSold->close();
                         <td><?php echo $property['Price']; ?></td>
                     </tr>
                 <?php } ?>
+            </tbody>
             </table>
         <?php } ?>
 
         <?php if (!empty($propertiesSold)) { ?>
             <h2>Properties Sold</h2>
             <table id="crud-table">
+            <thead>
                 <tr>
                     <th>Property ID</th>
                     <th>Type</th>
@@ -321,6 +334,8 @@ $stmtSold->close();
                     <th>Description</th>
                     <th>Price</th>
                 </tr>
+            </thead>
+            <tbody>
                 <?php foreach ($propertiesSold as $property) { ?>
                     <tr>
                         <td><?php echo $property['Property_ID']; ?></td>
@@ -337,6 +352,7 @@ $stmtSold->close();
                         <td><?php echo $property['Price']; ?></td>
                     </tr>
                 <?php } ?>
+            </tbody>
             </table>
         <?php } ?>
 
