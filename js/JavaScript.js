@@ -248,3 +248,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('search-property-form').classList.remove('hidden');
   });
 });
+
+//clients
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-client-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-client-form').classList.remove('hidden');
+    document.getElementById('edit-client-form').classList.add('hidden');
+    document.getElementById('delete-client-form').classList.add('hidden');
+    document.getElementById('search-client-form').classList.add('hidden');
+  });
+
+  document.getElementById('edit-client-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-client-form').classList.add('hidden');
+    document.getElementById('edit-client-form').classList.remove('hidden');
+    document.getElementById('delete-client-form').classList.add('hidden');
+    document.getElementById('search-client-form').classList.add('hidden');
+  });
+
+  document.getElementById('delete-client-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-client-form').classList.add('hidden');
+    document.getElementById('edit-client-form').classList.add('hidden');
+    document.getElementById('delete-client-form').classList.remove('hidden');
+    document.getElementById('search-client-form').classList.add('hidden');
+  });
+
+  document.getElementById('search-client-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-client-form').classList.add('hidden');
+    document.getElementById('edit-client-form').classList.add('hidden');
+    document.getElementById('delete-client-form').classList.add('hidden');
+    document.getElementById('search-client-form').classList.remove('hidden');
+  });
+});
