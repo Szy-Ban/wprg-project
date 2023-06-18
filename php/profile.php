@@ -158,7 +158,7 @@ $role = $user['role'];
         echo '<p><b>Email</b>: '.$user['Email'].'</p>';
         echo '<p><b>Notes</b>: '.$user['Notes'].'</p>';
         }?>
-        <?php if (!empty($error_message)) { ?>
+        <?php if (!empty($error_message)) { // jak jest error to wyswietl ?>
         <p class="error"><?php echo "<div class='error-message'><h3>$error_message</h3></div>"; ?></p>
     <?php } ?>
     </div>
