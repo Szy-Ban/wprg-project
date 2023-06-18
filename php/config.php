@@ -1,8 +1,8 @@
 <?php
-$servername = "localhost";
-$username = "root";
-$password = "";
-$dbname = "wprg_project";
+$servername = "default";
+$username = "default";
+$password = "default";
+$dbname = "default";
 
 $conn = new mysqli($servername, $username, $password, $dbname);
 
