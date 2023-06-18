@@ -1,2 +1,35 @@
-# wprg-project
-Biuro posrednictwa nieruchomosci
+## Opis projektu
+
+- Baza danych:
+	- 11 tabel
+	- różne typy wartości
+-  CRUDS:
+	- CRUDS na wszystkich encjach
+	- Admin panel dla każdego CRUDS
+	- filtry wyszukiwania
+- Obiektowość:
+	- brak
+- Funkcje PHP:
+	- 12 funkcji wbudowanych:
+		- session_start();
+		- isset();
+		- header();
+		- prepare();
+		- bind_param();
+		- execute();
+		- session_destroy();
+		- unset();
+		- fetch_assoc();
+		- fetch_all();
+		- close();
+		- empty();
+- Walidacja:
+	- bez błędów
+- Dodatkowe:
+	- brak przetrzymywania danych logowania, ani danych serwera na repozytorium
+	- wykorzystanie skryptów JavaScript;
+	- wykorzystanie sesji
+	- logowanie z szyfrowaniem haseł;
+	- role użytkowników
+	
+
