@@ -34,9 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $monthly_rent = $_POST['monthly_rent'];
         $lease_term = $_POST['lease_term'];
 
-        $query = "SELECT * FROM rent WHERE Rent_ID = ? AND Renter_ID = ?";
+        $query = "SELECT * FROM rent WHERE Rent_ID = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("ii", $rent_id, $_SESSION['login_user']);
+        $stmt->bind_param("i", $rent_id);
         $stmt->execute();
         $result = $stmt->get_result();
         $rent = $result->fetch_assoc();
@@ -58,7 +58,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (isset($_POST["delete_rent"])) { // usuwanie najmu
         $rent_id = $_POST['rent_id'];
 
-        $query = "SELECT * FROM rent WHERE Rent_ID = ? AND Renter_ID = ?";
+        $query = "SELECT * FROM rent WHERE Rent_ID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("ii", $rent_id, $_SESSION['login_user']);
         $stmt->execute();

@@ -34,9 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $buyer_id = $_POST['buyer_id'];
         $seller_id = $_POST['seller_id'];
 
-        $query = "SELECT * FROM sale WHERE Sale_ID = ? AND Seller_ID = ?";
+        $query = "SELECT * FROM sale WHERE Sale_ID = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("ii", $sale_id, $_SESSION['login_user']);
+        $stmt->bind_param("i", $sale_id);
         $stmt->execute();
         $result = $stmt->get_result();
         $sale = $result->fetch_assoc();
@@ -58,9 +58,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (isset($_POST["delete_sale"])) { // usuwanie sprzedazy
         $sale_id = $_POST['sale_id'];
 
-        $query = "SELECT * FROM sale WHERE Sale_ID = ? AND Seller_ID = ?";
+        $query = "SELECT * FROM sale WHERE Sale_ID = ?";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("ii", $sale_id, $_SESSION['login_user']);
+        $stmt->bind_param("i", $sale_id);
         $stmt->execute();
         $result = $stmt->get_result();
         $sale = $result->fetch_assoc();
