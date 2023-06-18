@@ -119,6 +119,9 @@ if (isset($_GET['id'])) {
             <span>Features:</span> 
             <ul>
                 <?php
+                    if(!$features){
+                        echo '<li> No additional features</li>';
+                    }
                     foreach($features as $feature) { // dodatkowe udogodnienia jako lista
                         echo '<li>'.$feature['Feature_type'].'</li>';
                     }

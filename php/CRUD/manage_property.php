@@ -20,13 +20,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nr_rooms = $_POST['nr_rooms'];
         $nr_bedrooms = $_POST['nr_bedrooms'];
         $nr_bathrooms = $_POST['nr_bathrooms'];
-        $feature = $_POST['feature'];
-        $description = $_POST['description'];
+        $description = htmlspecialchars($_POST['description']);
         $price = $_POST['price'];
 
-        $query = "INSERT INTO property (Type, PType, City, Address, ZIP_Code, Square_meters, nr_rooms, nr_bedrooms, nr_bathrooms, Feature, Description, Price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+        $query = "INSERT INTO property (Type, PType, City, Address, ZIP_Code, Square_meters, nr_rooms, nr_bedrooms, nr_bathrooms, Description, Price) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
         $stmt = $conn->prepare($query);
-        $stmt->bind_param("issssdiiiiis", $type, $ptype, $city, $address, $zip_code, $square_meters, $nr_rooms, $nr_bedrooms, $nr_bathrooms, $feature, $description, $price);
+        $stmt->bind_param("issssdiiisi", $type, $ptype, $city, $address, $zip_code, $square_meters, $nr_rooms, $nr_bedrooms, $nr_bathrooms, $description, $price);
         $stmt->execute();
         $stmt->close();
         
@@ -44,8 +43,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $nr_rooms = $_POST['nr_rooms'];
         $nr_bedrooms = $_POST['nr_bedrooms'];
         $nr_bathrooms = $_POST['nr_bathrooms'];
-        $feature = $_POST['feature'];
-        $description = $_POST['description'];
+        $description = htmlspecialchars($_POST['description']);
         $price = $_POST['price'];
 
         $query = "SELECT * FROM property WHERE Property_ID = ?";
@@ -57,11 +55,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $stmt->close();
 
         if ($property) {
-            $query = "UPDATE property SET Type = ?, PType = ?, City = ?, Address = ?, ZIP_Code = ?, Square_meters = ?, nr_rooms = ?, nr_bedrooms = ?, nr_bathrooms = ?, Feature = ?, Description = ?, Price = ? WHERE Property_ID = ?";
+            $query = "UPDATE property SET Type = ?, PType = ?, City = ?, Address = ?, ZIP_Code = ?, Square_meters = ?, nr_rooms = ?, nr_bedrooms = ?, nr_bathrooms = ?, Description = ?, Price = ? WHERE Property_ID = ?";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param("issssdiiiiisi", $type, $ptype, $city, $address, $zip_code, $square_meters, $nr_rooms, $nr_bedrooms, $nr_bathrooms, $feature, $description, $price, $property_id);
+            $stmt->bind_param("issssdiiisdi", $type, $ptype, $city, $address, $zip_code, $square_meters, $nr_rooms, $nr_bedrooms, $nr_bathrooms, $feature, $description, $price, $property_id);
             $stmt->execute();
             $stmt->close();
+
 
             header("Location: manage_property.php");
             exit;
@@ -108,7 +107,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $searchNrBedroomsMax = $_POST["nr_bedrooms_max"];
         $searchNrBathroomsMin = $_POST["nr_bathrooms_min"];
         $searchNrBathroomsMax = $_POST["nr_bathrooms_max"];
-        $searchFeature = $_POST["feature"];
         $searchDescription = $_POST["description"];
         $searchPriceMin = $_POST["price_min"];
         $searchPriceMax = $_POST["price_max"];
@@ -160,9 +158,6 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $query .= " AND nr_bathrooms >= '$searchNrBathroomsMin'";
         } elseif (!empty($searchNrBathroomsMax)) {
             $query .= " AND nr_bathrooms <= '$searchNrBathroomsMax'";
-        }
-        if (!empty($searchFeature)) {
-            $query .= " AND Feature = '$searchFeature'";
         }
         if (!empty($searchDescription)) {
             $query .= " AND Description = '$searchDescription'";
@@ -258,7 +253,6 @@ if (!isset($_POST["search_property"])) {
         <input class="form-field" type="text" name="nr_rooms" placeholder="Number of Rooms" required>
         <input class="form-field" type="text" name="nr_bedrooms" placeholder="Number of Bedrooms" required>
         <input class="form-field" type="text" name="nr_bathrooms" placeholder="Number of Bathrooms" required>
-        <input class="form-field" type="text" name="feature" placeholder="Feature" required>
         <input class="form-field" type="text" name="description" placeholder="Description" required>
         <input class="form-field" type="text" name="price" placeholder="Price" required>
         <input type="submit" class="form-button" value="Add Property">
@@ -277,7 +271,6 @@ if (!isset($_POST["search_property"])) {
         <input class="form-field" type="text" name="nr_rooms" placeholder="Number of Rooms" required>
         <input class="form-field" type="text" name="nr_bedrooms" placeholder="Number of Bedrooms" required>
         <input class="form-field" type="text" name="nr_bathrooms" placeholder="Number of Bathrooms" required>
-        <input class="form-field" type="text" name="feature" placeholder="Feature" required>
         <input class="form-field" type="text" name="description" placeholder="Description" required>
         <input class="form-field" type="text" name="price" placeholder="Price" required>
         <input type="submit" class="form-button" value="Edit Property">
@@ -300,7 +293,6 @@ if (!isset($_POST["search_property"])) {
         <input class="form-field" type="text" name="nr_bedrooms_max" placeholder="Max Number of Bedrooms">
         <input class="form-field" type="text" name="nr_bathrooms_min" placeholder="Min Number of Bathrooms">
         <input class="form-field" type="text" name="nr_bathrooms_max" placeholder="Max Number of Bathrooms">
-        <input class="form-field" type="text" name="feature" placeholder="Feature">
         <input class="form-field" type="text" name="description" placeholder="Description">
         <input class="form-field" type="text" name="price_min" placeholder="Min Price">
         <input class="form-field" type="text" name="price_max" placeholder="Max Price">
@@ -330,7 +322,6 @@ if (!isset($_POST["search_property"])) {
             <th>Number of Rooms</th>
             <th>Number of Bedrooms</th>
             <th>Number of Bathrooms</th>
-            <th>Feature</th>
             <th>Description</th>
             <th>Price</th>
         </tr>
@@ -347,7 +338,6 @@ if (!isset($_POST["search_property"])) {
                 echo '<td>' . $property["nr_rooms"] . '</td>';
                 echo '<td>' . $property["nr_bedrooms"] . '</td>';
                 echo '<td>' . $property["nr_bathrooms"] . '</td>';
-                echo '<td>' . $property["Feature"] . '</td>';
                 echo '<td>' . $property["Description"] . '</td>';
                 echo '<td>' . $property["Price"] . '</td>';
                 echo '</tr>';
