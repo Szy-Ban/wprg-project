@@ -353,3 +353,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('search-client-property-form').classList.remove('hidden');
   });
 });
+
+//features-description
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-features-description-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-features-description-form').classList.remove('hidden');
+    document.getElementById('edit-features-description-form').classList.add('hidden');
+    document.getElementById('delete-features-description-form').classList.add('hidden');
+    document.getElementById('search-features-description-form').classList.add('hidden');
+  });
+
+  document.getElementById('edit-features-description-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-features-description-form').classList.add('hidden');
+    document.getElementById('edit-features-description-form').classList.remove('hidden');
+    document.getElementById('delete-features-description-form').classList.add('hidden');
+    document.getElementById('search-features-description-form').classList.add('hidden');
+  });
+
+  document.getElementById('delete-features-description-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-features-description-form').classList.add('hidden');
+    document.getElementById('edit-features-description-form').classList.add('hidden');
+    document.getElementById('delete-features-description-form').classList.remove('hidden');
+    document.getElementById('search-features-description-form').classList.add('hidden');
+  });
+
+  document.getElementById('search-features-description-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-features-description-form').classList.add('hidden');
+    document.getElementById('edit-features-description-form').classList.add('hidden');
+    document.getElementById('delete-features-description-form').classList.add('hidden');
+    document.getElementById('search-features-description-form').classList.remove('hidden');
+  });
+});
