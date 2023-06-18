@@ -40,7 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $role = $_POST['role'];
         $notes = $_POST['notes'];
 
-        $query = "SELECT * FROM clients WHERE Client_ID = ? AND role = 'admin'";
+        $query = "SELECT * FROM clients WHERE Client_ID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $client_id);
         $stmt->execute();
@@ -64,7 +64,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (isset($_POST["delete_client"])) { // usuwanie klienta
         $client_id = $_POST['client_id'];
 
-        $query = "SELECT * FROM clients WHERE Client_ID = ? AND role = 'admin'";
+        $query = "SELECT * FROM clients WHERE Client_ID = ?";
         $stmt = $conn->prepare($query);
         $stmt->bind_param("i", $client_id);
         $stmt->execute();
