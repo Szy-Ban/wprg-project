@@ -122,6 +122,7 @@ if (!isset($_POST["search_feature"])) {
                     <li><a href="../index.php">Home</a></li>
                     <li><a href="../about.php">About</a></li>
                     <li><a href="../contact.php">Contact</a></li>
+                    <li><a href="../archive.php">Archive</a></li>
                 </ul>
             </nav>
         </div>

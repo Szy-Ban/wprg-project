@@ -20,7 +20,7 @@ if(isset($_GET['city']) && isset($_GET['type'])){
     $stmt = $conn->stmt_init();
     $params = array();
 
-    $sql = "SELECT * FROM property WHERE type = ? AND Property_ID NOT IN (SELECT Property_ID FROM rent UNION SELECT Property_ID FROM sale)";
+    $sql = "SELECT * FROM property WHERE type = ? AND Property_ID IN (SELECT Property_ID FROM rent UNION SELECT Property_ID FROM sale)";
     $params[] = $type;
 
     if(!empty($city)) {
@@ -92,7 +92,11 @@ if(isset($_GET['city']) && isset($_GET['type'])){
     $stmt->execute();
     $result = $stmt->get_result();
 } else {
-    header("Location: index.php");
+    $stmt = $conn->stmt_init();
+    $sql = "SELECT * FROM property WHERE Property_ID IN (SELECT Property_ID FROM rent) OR Property_ID IN (SELECT Property_ID FROM sale)";
+    $stmt->prepare($sql);
+    $stmt->execute();
+    $result = $stmt->get_result();
 }
 ?>
 
@@ -100,7 +104,7 @@ if(isset($_GET['city']) && isset($_GET['type'])){
 <html>
 <head>
     <link rel="stylesheet" type="text/css" href="../css/style.css">
-    <title>Real Estate Company - Search</title>
+    <title>Real Estate Company - Archive</title>
     <script src="../js/JavaScript.js"></script>
 </head>
 <body>
@@ -111,10 +115,10 @@ if(isset($_GET['city']) && isset($_GET['type'])){
             <nav>
                 <ul>
                     <li><h1>Real Estate Company</h1></li><br><br>
-                    <li><a href="index.php"><u>Home</u></a></li>
+                    <li><a href="index.php">Home</a></li>
                     <li><a href="about.php">About</a></li>
                     <li><a href="contact.php">Contact</a></li>
-                    <li><a href="archive.php">Archive</a></li>
+                    <li><a href="archive.php"><u>Archive</u></a></li>
                 </ul>
             </nav>
         </div>
@@ -144,7 +148,7 @@ if(isset($_GET['city']) && isset($_GET['type'])){
 </header>
 <section class="search-container" id="searchContainer">
     <section class="search-section">
-        <form action="search.php" method="GET">
+        <form action="archive.php" method="GET">
             <div class="search-buttons">
                 <button id="buyButton" class="active" type="button" onclick="toggleButton('buyButton')">Buy</button>
                 <button id="rentButton" type="button" onclick="toggleButton('rentButton')">Rent</button>
@@ -185,6 +189,7 @@ if(isset($_GET['city']) && isset($_GET['type'])){
     <?php
     while($row = $result->fetch_assoc()) {
         echo '<div class="property">';
+        echo "<p style='color: red'\">Archive</p>";
         echo '<h3>City: '.$row['City'].'</h3>';
         echo '<p><b>'.$row['PType'].'</b></p>';
         echo '<p>Address: '.$row['Address'].'</p>';
