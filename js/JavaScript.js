@@ -318,3 +318,38 @@ document.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('search-agent-property-form').classList.remove('hidden');
   });
 });
+
+//client-property
+document.addEventListener('DOMContentLoaded', (event) => {
+  document.getElementById('add-client-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-client-property-form').classList.remove('hidden');
+    document.getElementById('edit-client-property-form').classList.add('hidden');
+    document.getElementById('delete-client-property-form').classList.add('hidden');
+    document.getElementById('search-client-property-form').classList.add('hidden');
+  });
+
+  document.getElementById('edit-client-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-client-property-form').classList.add('hidden');
+    document.getElementById('edit-client-property-form').classList.remove('hidden');
+    document.getElementById('delete-client-property-form').classList.add('hidden');
+    document.getElementById('search-client-property-form').classList.add('hidden');
+  });
+
+  document.getElementById('delete-client-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-client-property-form').classList.add('hidden');
+    document.getElementById('edit-client-property-form').classList.add('hidden');
+    document.getElementById('delete-client-property-form').classList.remove('hidden');
+    document.getElementById('search-client-property-form').classList.add('hidden');
+  });
+
+  document.getElementById('search-client-property-button').addEventListener('click', function(event) {
+    event.preventDefault();
+    document.getElementById('add-client-property-form').classList.add('hidden');
+    document.getElementById('edit-client-property-form').classList.add('hidden');
+    document.getElementById('delete-client-property-form').classList.add('hidden');
+    document.getElementById('search-client-property-form').classList.remove('hidden');
+  });
+});
