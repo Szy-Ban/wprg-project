@@ -64,25 +64,57 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     } elseif (isset($_POST["delete_client"])) { // usuwanie klienta
         $client_id = $_POST['client_id'];
 
-        $query = "SELECT * FROM clients WHERE Client_ID = ?";
-        $stmt = $conn->prepare($query);
-        $stmt->bind_param("i", $client_id);
-        $stmt->execute();
-        $result = $stmt->get_result();
-        $client = $result->fetch_assoc();
-        $stmt->close();
+        // czy istnieje
+        $checkQuery = "SELECT * FROM clients WHERE Client_ID = ?";
+        $checkStmt = $conn->prepare($checkQuery);
+        $checkStmt->bind_param("i", $client_id);
+        $checkStmt->execute();
+        $checkResult = $checkStmt->get_result();
+        $clientExists = $checkResult->num_rows > 0;
+        $checkStmt->close();
 
-        if ($client) {
-            $query = "DELETE FROM clients WHERE Client_ID = ?";
-            $stmt = $conn->prepare($query);
-            $stmt->bind_param("i", $client_id);
-            $stmt->execute();
-            $stmt->close();
-
-            header("Location: manage_clients.php");
-            exit;
+        if (!$clientExists) {
+            $error_message = "Client not found.";
         } else {
-            $error_message = "No record in base.";
+            // czy w client_property table
+            $checkAssociatedQuery = "SELECT * FROM client_property WHERE Client_ID = ?";
+            $checkAssociatedStmt = $conn->prepare($checkAssociatedQuery);
+            $checkAssociatedStmt->bind_param("i", $client_id);
+            $checkAssociatedStmt->execute();
+            $checkAssociatedResult = $checkAssociatedStmt->get_result();
+            $associatedRecords = $checkAssociatedResult->num_rows;
+            $checkAssociatedStmt->close();
+
+            // czy w rent table
+            $checkRentQuery = "SELECT * FROM rent WHERE Tenant_ID = ?";
+            $checkRentStmt = $conn->prepare($checkRentQuery);
+            $checkRentStmt->bind_param("i", $client_id);
+            $checkRentStmt->execute();
+            $checkRentResult = $checkRentStmt->get_result();
+            $rentRecords = $checkRentResult->num_rows;
+            $checkRentStmt->close();
+
+            // czy w sale table
+            $checkSaleQuery = "SELECT * FROM sale WHERE Buyer_ID = ? OR Seller_ID = ?";
+            $checkSaleStmt = $conn->prepare($checkSaleQuery);
+            $checkSaleStmt->bind_param("ii", $client_id, $client_id);
+            $checkSaleStmt->execute();
+            $checkSaleResult = $checkSaleStmt->get_result();
+            $saleRecords = $checkSaleResult->num_rows;
+            $checkSaleStmt->close();
+
+            if ($associatedRecords > 0 || $rentRecords > 0 || $saleRecords > 0) {
+                $error_message = "Cannot delete the client. Associated records exist in the client_property, rent, or sale tables.";
+            } else {
+                $deleteQuery = "DELETE FROM clients WHERE Client_ID = ?";
+                $deleteStmt = $conn->prepare($deleteQuery);
+                $deleteStmt->bind_param("i", $client_id);
+                $deleteStmt->execute();
+                $deleteStmt->close();
+
+                header("Location: manage_clients.php");
+                exit;
+            }
         }
 
     } elseif (isset($_POST["search_client"])) { // szukanie klienta

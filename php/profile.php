@@ -10,12 +10,45 @@ if(!isset($_SESSION['login_user']) || !$_SESSION['login_user']){ //zabepieczenie
 $client_id = $_SESSION['client_id'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST" && isset($_POST["delete_account"])) { //usuwanie konta
-    $stmt = $conn->prepare("DELETE FROM Clients WHERE Client_ID = ?");
-    $stmt->bind_param("i", $client_id);
-    if ($stmt->execute()) {
-        session_destroy();
-        header("location: login.php");
-        exit;
+    // czy w client_property table
+    $checkAssociatedQuery = "SELECT * FROM client_property WHERE Client_ID = ?";
+    $checkAssociatedStmt = $conn->prepare($checkAssociatedQuery);
+    $checkAssociatedStmt->bind_param("i", $client_id);
+    $checkAssociatedStmt->execute();
+    $checkAssociatedResult = $checkAssociatedStmt->get_result();
+    $associatedRecords = $checkAssociatedResult->num_rows;
+    $checkAssociatedStmt->close();
+
+    // czy w rent table
+    $checkRentQuery = "SELECT * FROM rent WHERE Tenant_ID = ?";
+    $checkRentStmt = $conn->prepare($checkRentQuery);
+    $checkRentStmt->bind_param("i", $client_id);
+    $checkRentStmt->execute();
+    $checkRentResult = $checkRentStmt->get_result();
+    $rentRecords = $checkRentResult->num_rows;
+    $checkRentStmt->close();
+
+    // czy w sale table
+    $checkSaleQuery = "SELECT * FROM sale WHERE Buyer_ID = ? OR Seller_ID = ?";
+    $checkSaleStmt = $conn->prepare($checkSaleQuery);
+    $checkSaleStmt->bind_param("ii", $client_id, $client_id);
+    $checkSaleStmt->execute();
+    $checkSaleResult = $checkSaleStmt->get_result();
+    $saleRecords = $checkSaleResult->num_rows;
+    $checkSaleStmt->close();
+
+    if ($associatedRecords > 0 || $rentRecords > 0 || $saleRecords > 0) {
+        $error_message = "Cannot delete the account. Associated records exist in the client_property, rent, or sale tables.";
+    } else {
+        $stmt = $conn->prepare("DELETE FROM Clients WHERE Client_ID = ?");
+        $stmt->bind_param("i", $client_id);
+        if ($stmt->execute()) {
+            session_destroy();
+            header("location: login.php");
+            exit;
+        } else {
+            $error_message = "Failed to delete the account.";
+        }
     }
 }
 
@@ -125,6 +158,9 @@ $role = $user['role'];
         echo '<p><b>Email</b>: '.$user['Email'].'</p>';
         echo '<p><b>Notes</b>: '.$user['Notes'].'</p>';
         }?>
+        <?php if (!empty($error_message)) { ?>
+        <p class="error"><?php echo "<div class='error-message'><h3>$error_message</h3></div>"; ?></p>
+    <?php } ?>
     </div>
 </div>
 <footer>
