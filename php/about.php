@@ -48,9 +48,8 @@ session_start();
     </div>
 </header>
 <section class="content-section"> <!-- sekcja opisowa strony -->
-        <section class="form-container-index">
-        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...<br>
-        Curabitur et arcu vel orci vehicula sodales at sit amet nisl. Mauris ultricies varius pellentesque
+        <section class="form-container-index" style="font-size: 20px">
+        At Real Estate Company, we are passionate about real estate and dedicated to delivering exceptional services to our clients. With years of experience in the industry, we have built a solid reputation for our professionalism, integrity, and personalized approach. Our team of experienced agents is committed to understanding your unique needs and preferences, ensuring that you find the perfect property that suits your lifestyle and investment goals. We pride ourselves on staying up-to-date with the latest market trends and utilizing innovative strategies to provide you with the best possible real estate experience.
     </section>
     </section>
 <footer>

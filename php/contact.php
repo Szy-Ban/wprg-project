@@ -48,9 +48,13 @@ session_start();
     </div>
 </header>
 <section class="content-section"> <!-- sekcja opisowa strony -->
-        <section class="form-container-index">
-        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...<br>
-        Curabitur et arcu vel orci vehicula sodales at sit amet nisl. Mauris ultricies varius pellentesque
+        <section class="form-container-index" style="font-size: 20px">
+        If you have any inquiries or would like to learn more about our services, please don't hesitate to get in touch with us. Our friendly and knowledgeable team is ready to assist you.
+
+        <br><br>Phone: 123321321<br>
+        Email: office@szy.bani<br>
+        Office Address: Bojano B3<br><br>
+        We look forward to serving you and helping you achieve your real estate goals!
     </section>
     </section>
 <footer>

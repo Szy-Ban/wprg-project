@@ -63,9 +63,8 @@ session_start();
     </section>
 </section>
     <section class="content-section"> <!-- sekcja opisowa strony -->
-        <section class="form-container-index">
-        Neque porro quisquam est qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit...<br>
-        Curabitur et arcu vel orci vehicula sodales at sit amet nisl. Mauris ultricies varius pellentesque
+    <section class="form-container-index" style="font-size: 20px">
+        Welcome to Real Estate Company, your trusted partner in finding your dream property. We specialize in providing exceptional real estate services, connecting buyers and sellers, and assisting our clients in making informed decisions. With our extensive knowledge of the market and a dedicated team of professionals, we strive to deliver outstanding results and exceed your expectations. Whether you are looking to buy, sell, or rent a property, Real Estate Company is here to guide you every step of the way.
     </section>
     </section>
     <footer> <!-- Stopka -->
