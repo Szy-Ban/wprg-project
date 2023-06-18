@@ -10,7 +10,7 @@
 - Obiektowość:
 	- brak
 - Funkcje PHP:
-	- 12 funkcji wbudowanych:
+	- 15 funkcji wbudowanych:
 		- session_start();
 		- isset();
 		- header();
@@ -23,6 +23,9 @@
 		- fetch_all();
 		- close();
 		- empty();
+		- password_verify();
+		- get_result();
+		- password_hash();
 - Walidacja:
 	- bez błędów
 - Dodatkowe:
