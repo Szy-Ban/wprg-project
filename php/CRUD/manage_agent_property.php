@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $agent = $agent_result->fetch_assoc();
         $agent_stmt->close();
 
-        $property_query = "SELECT * FROM properties WHERE Property_ID = ?";
+        $property_query = "SELECT * FROM property WHERE Property_ID = ?";
         $property_stmt = $conn->prepare($property_query);
         $property_stmt->bind_param("i", $property_id);
         $property_stmt->execute();
@@ -71,7 +71,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $agent = $agent_result->fetch_assoc();
         $agent_stmt->close();
 
-        $property_query = "SELECT * FROM properties WHERE Property_ID = ?";
+        $property_query = "SELECT * FROM property WHERE Property_ID = ?";
         $property_stmt = $conn->prepare($property_query);
         $property_stmt->bind_param("i", $property_id);
         $property_stmt->execute();
