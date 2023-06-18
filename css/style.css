@@ -225,7 +225,7 @@ footer { /* stopka */
     flex-direction: column;
     align-items: center;
     width: 450px;
-    height: 350px;
+    height: 380px;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -239,7 +239,7 @@ footer { /* stopka */
     flex-direction: column;
     align-items: center;
     width: 450px;
-    height: 670px;
+    height: 690px;
     background-color: #fff;
     padding: 20px;
     border-radius: 5px;
@@ -385,4 +385,12 @@ textarea {
 
 #crud-table tbody tr:last-of-type {
     border-bottom: 5px solid #0E2954;
+}
+
+.select-style {
+    min-width:40vh;
+    padding: 8px;
+    font-size: 16px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
 }
