@@ -59,6 +59,44 @@ $stmt->execute();
 $result = $stmt->get_result();
 $user = $result->fetch_assoc();
 $role = $user['role'];
+
+if($role == 'user'){
+// kupione przez
+$queryBought = "SELECT * FROM property INNER JOIN sale ON property.Property_ID = sale.Property_ID WHERE sale.Buyer_ID = ?";
+$stmtBought = $conn->prepare($queryBought);
+$stmtBought->bind_param("i", $client_id);
+$stmtBought->execute();
+$resultBought = $stmtBought->get_result();
+$propertiesBought = $resultBought->fetch_all(MYSQLI_ASSOC);
+$stmtBought->close();
+
+// wynajmowane przez
+$queryRented = "SELECT * FROM property INNER JOIN rent ON property.Property_ID = rent.Property_ID WHERE rent.Tenant_ID = ?";
+$stmtRented = $conn->prepare($queryRented);
+$stmtRented->bind_param("i", $client_id);
+$stmtRented->execute();
+$resultRented = $stmtRented->get_result();
+$propertiesRented = $resultRented->fetch_all(MYSQLI_ASSOC);
+$stmtRented->close();
+
+// wynajmowane dla innych
+$queryRentedOut = "SELECT * FROM property INNER JOIN rent ON property.Property_ID = rent.Property_ID WHERE rent.Renter_ID = ?";
+$stmtRentedOut = $conn->prepare($queryRentedOut);
+$stmtRentedOut->bind_param("i", $client_id);
+$stmtRentedOut->execute();
+$resultRentedOut = $stmtRentedOut->get_result();
+$propertiesRentedOut = $resultRentedOut->fetch_all(MYSQLI_ASSOC);
+$stmtRentedOut->close();
+
+// sprzedawane dla innych
+$querySold = "SELECT * FROM property INNER JOIN sale ON property.Property_ID = sale.Property_ID WHERE sale.Seller_ID = ?";
+$stmtSold = $conn->prepare($querySold);
+$stmtSold->bind_param("i", $client_id);
+$stmtSold->execute();
+$resultSold = $stmtSold->get_result();
+$propertiesSold = $resultSold->fetch_all(MYSQLI_ASSOC);
+$stmtSold->close();
+}
 ?>
 
 <!DOCTYPE html>
@@ -156,8 +194,153 @@ $role = $user['role'];
         echo '<p><b>First Name</b>: '.$user['First_name'].'</p>';
         echo '<p><b>Last Name</b>: '.$user['Last_name'].'</p>';
         echo '<p><b>Email</b>: '.$user['Email'].'</p>';
-        echo '<p><b>Notes</b>: '.$user['Notes'].'</p>';
-        }?>
+        echo '<p><b>Notes</b>: '.$user['Notes'].'</p>'; ?>
+
+        <?php if (!empty($propertiesBought)) { ?>
+            <h2>Properties Bought</h2>
+            <table id="crud-table">
+                <tr>
+                    <th>Property ID</th>
+                    <th>Type</th>
+                    <th>PType</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>ZIP Code</th>
+                    <th>Square Meters</th>
+                    <th>Number of Rooms</th>
+                    <th>Number of Bedrooms</th>
+                    <th>Number of Bathrooms</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+                <?php foreach ($propertiesBought as $property) { ?>
+                    <tr>
+                        <td><?php echo $property['Property_ID']; ?></td>
+                        <td><?php echo $property['Type']; ?></td>
+                        <td><?php echo $property['PType']; ?></td>
+                        <td><?php echo $property['City']; ?></td>
+                        <td><?php echo $property['Address']; ?></td>
+                        <td><?php echo $property['ZIP_Code']; ?></td>
+                        <td><?php echo $property['Square_meters']; ?></td>
+                        <td><?php echo $property['nr_rooms']; ?></td>
+                        <td><?php echo $property['nr_bedrooms']; ?></td>
+                        <td><?php echo $property['nr_bathrooms']; ?></td>
+                        <td><?php echo $property['Description']; ?></td>
+                        <td><?php echo $property['Price']; ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        <?php } ?>
+
+        <?php if (!empty($propertiesRented)) { ?>
+            <h2>Properties Rented</h2>
+            <table id="crud-table">
+                <tr>
+                    <th>Property ID</th>
+                    <th>Type</th>
+                    <th>PType</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>ZIP Code</th>
+                    <th>Square Meters</th>
+                    <th>Number of Rooms</th>
+                    <th>Number of Bedrooms</th>
+                    <th>Number of Bathrooms</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+                <?php foreach ($propertiesRented as $property) { ?>
+                    <tr>
+                        <td><?php echo $property['Property_ID']; ?></td>
+                        <td><?php echo $property['Type']; ?></td>
+                        <td><?php echo $property['PType']; ?></td>
+                        <td><?php echo $property['City']; ?></td>
+                        <td><?php echo $property['Address']; ?></td>
+                        <td><?php echo $property['ZIP_Code']; ?></td>
+                        <td><?php echo $property['Square_meters']; ?></td>
+                        <td><?php echo $property['nr_rooms']; ?></td>
+                        <td><?php echo $property['nr_bedrooms']; ?></td>
+                        <td><?php echo $property['nr_bathrooms']; ?></td>
+                        <td><?php echo $property['Description']; ?></td>
+                        <td><?php echo $property['Price']; ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        <?php } ?>
+
+        <?php if (!empty($propertiesRentedOut)) { ?>
+            <h2>Properties Rented Out</h2>
+            <table id="crud-table">
+                <tr>
+                    <th>Property ID</th>
+                    <th>Type</th>
+                    <th>PType</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>ZIP Code</th>
+                    <th>Square Meters</th>
+                    <th>Number of Rooms</th>
+                    <th>Number of Bedrooms</th>
+                    <th>Number of Bathrooms</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+                <?php foreach ($propertiesRentedOut as $property) { ?>
+                    <tr>
+                        <td><?php echo $property['Property_ID']; ?></td>
+                        <td><?php echo $property['Type']; ?></td>
+                        <td><?php echo $property['PType']; ?></td>
+                        <td><?php echo $property['City']; ?></td>
+                        <td><?php echo $property['Address']; ?></td>
+                        <td><?php echo $property['ZIP_Code']; ?></td>
+                        <td><?php echo $property['Square_meters']; ?></td>
+                        <td><?php echo $property['nr_rooms']; ?></td>
+                        <td><?php echo $property['nr_bedrooms']; ?></td>
+                        <td><?php echo $property['nr_bathrooms']; ?></td>
+                        <td><?php echo $property['Description']; ?></td>
+                        <td><?php echo $property['Price']; ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        <?php } ?>
+
+        <?php if (!empty($propertiesSold)) { ?>
+            <h2>Properties Sold</h2>
+            <table id="crud-table">
+                <tr>
+                    <th>Property ID</th>
+                    <th>Type</th>
+                    <th>PType</th>
+                    <th>City</th>
+                    <th>Address</th>
+                    <th>ZIP Code</th>
+                    <th>Square Meters</th>
+                    <th>Number of Rooms</th>
+                    <th>Number of Bedrooms</th>
+                    <th>Number of Bathrooms</th>
+                    <th>Description</th>
+                    <th>Price</th>
+                </tr>
+                <?php foreach ($propertiesSold as $property) { ?>
+                    <tr>
+                        <td><?php echo $property['Property_ID']; ?></td>
+                        <td><?php echo $property['Type']; ?></td>
+                        <td><?php echo $property['PType']; ?></td>
+                        <td><?php echo $property['City']; ?></td>
+                        <td><?php echo $property['Address']; ?></td>
+                        <td><?php echo $property['ZIP_Code']; ?></td>
+                        <td><?php echo $property['Square_meters']; ?></td>
+                        <td><?php echo $property['nr_rooms']; ?></td>
+                        <td><?php echo $property['nr_bedrooms']; ?></td>
+                        <td><?php echo $property['nr_bathrooms']; ?></td>
+                        <td><?php echo $property['Description']; ?></td>
+                        <td><?php echo $property['Price']; ?></td>
+                    </tr>
+                <?php } ?>
+            </table>
+        <?php } ?>
+
+        <?php }?>
         <?php if (!empty($error_message)) { // jak jest error to wyswietl ?>
         <p class="error"><?php echo "<div class='error-message'><h3>$error_message</h3></div>"; ?></p>
     <?php } ?>
