@@ -19,6 +19,16 @@ if (isset($_GET['id'])) {
     $stmt->execute();
     $result = $stmt->get_result();
     $features = $result->fetch_all(MYSQLI_ASSOC);
+
+    // Pobranie danych agenta, jeśli istnieje powiązanie z daną nieruchomością
+    $stmt = $conn->prepare("SELECT a.Agent_ID, a.First_name, a.Last_name, a.Email, a.Phone_number 
+                            FROM agents a 
+                            INNER JOIN agent_property ap ON a.Agent_ID = ap.Agent_ID 
+                            WHERE ap.Property_ID = ?");
+    $stmt->bind_param("i", $property_id);
+    $stmt->execute();
+    $result = $stmt->get_result();
+    $agent = $result->fetch_assoc();
 } else {
     header("Location: index.php");
 }
@@ -114,6 +124,19 @@ if (isset($_GET['id'])) {
                     }
                 ?>
             </ul>
+        </div>
+        <div class="property-field">
+            <?php if ($agent) { ?>
+                <span>Interested? Contact Agent:</span>
+                <ul>
+                    <li>Name: <?php echo $agent['First_name'] . ' ' . $agent['Last_name']; ?></li>
+                    <li>Email: <?php echo $agent['Email']; ?></li>
+                    <li>Phone: <?php echo $agent['Phone_number']; ?></li>
+                </ul>
+            <?php } else { ?>
+                <span>Interested? Contact us:</span>
+                <a href="contact.php">contact@szy.bani</a>
+            <?php } ?>
         </div>
     </div>
 </div>
