@@ -202,9 +202,7 @@ $stmtSold->close();
             <table id="crud-table">
             <thead>
                 <tr>
-                    <th>Property ID</th>
-                    <th>Type</th>
-                    <th>PType</th>
+                    <th>Property type</th>
                     <th>City</th>
                     <th>Address</th>
                     <th>ZIP Code</th>
@@ -219,8 +217,6 @@ $stmtSold->close();
             <tbody>
                 <?php foreach ($propertiesBought as $property) { ?>
                     <tr>
-                        <td><?php echo $property['Property_ID']; ?></td>
-                        <td><?php echo $property['Type']; ?></td>
                         <td><?php echo $property['PType']; ?></td>
                         <td><?php echo $property['City']; ?></td>
                         <td><?php echo $property['Address']; ?></td>
@@ -242,9 +238,7 @@ $stmtSold->close();
             <table id="crud-table">
             <thead>
                 <tr>
-                    <th>Property ID</th>
-                    <th>Type</th>
-                    <th>PType</th>
+                    <th>Property type</th>
                     <th>City</th>
                     <th>Address</th>
                     <th>ZIP Code</th>
@@ -259,8 +253,6 @@ $stmtSold->close();
             <tbody>
                 <?php foreach ($propertiesRented as $property) { ?>
                     <tr>
-                        <td><?php echo $property['Property_ID']; ?></td>
-                        <td><?php echo $property['Type']; ?></td>
                         <td><?php echo $property['PType']; ?></td>
                         <td><?php echo $property['City']; ?></td>
                         <td><?php echo $property['Address']; ?></td>
@@ -282,9 +274,7 @@ $stmtSold->close();
             <table id="crud-table">
             <thead>
                 <tr>
-                    <th>Property ID</th>
-                    <th>Type</th>
-                    <th>PType</th>
+                    <th>Property type</th>
                     <th>City</th>
                     <th>Address</th>
                     <th>ZIP Code</th>
@@ -299,8 +289,6 @@ $stmtSold->close();
             <tbody>
                 <?php foreach ($propertiesRentedOut as $property) { ?>
                     <tr>
-                        <td><?php echo $property['Property_ID']; ?></td>
-                        <td><?php echo $property['Type']; ?></td>
                         <td><?php echo $property['PType']; ?></td>
                         <td><?php echo $property['City']; ?></td>
                         <td><?php echo $property['Address']; ?></td>
@@ -322,9 +310,7 @@ $stmtSold->close();
             <table id="crud-table">
             <thead>
                 <tr>
-                    <th>Property ID</th>
-                    <th>Type</th>
-                    <th>PType</th>
+                    <th>Property type</th>
                     <th>City</th>
                     <th>Address</th>
                     <th>ZIP Code</th>
@@ -339,8 +325,6 @@ $stmtSold->close();
             <tbody>
                 <?php foreach ($propertiesSold as $property) { ?>
                     <tr>
-                        <td><?php echo $property['Property_ID']; ?></td>
-                        <td><?php echo $property['Type']; ?></td>
                         <td><?php echo $property['PType']; ?></td>
                         <td><?php echo $property['City']; ?></td>
                         <td><?php echo $property['Address']; ?></td>
