@@ -108,7 +108,7 @@ $stmt->close();
         <label for="email">Email:</label><br>
         <input type="email" class="form-field" id="email" name="email" value="<?php echo htmlspecialchars($user['Email']); ?>" required><br><br>
         <label for="phone_number">Phone Number:</label><br>
-        <input type="number" class="form-field" id="phone_number" name="phone_number" value="<?php echo $user['Phone_number']; ?>" required><br><br>
+        <input type="number" class="form-field" id="phone_number" maxlength="11" name="phone_number" value="<?php echo $user['Phone_number']; ?>" required><br><br>
         <label for="notes">Notes:</label><br>
         <textarea id="notes" class="form-field" name="notes"><?php echo htmlspecialchars($user['Notes']); ?></textarea><br><br>
         <input type="submit" name="save_changes" value="Save Changes" class="form-button"><br><br>

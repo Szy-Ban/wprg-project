@@ -225,7 +225,7 @@ if (!isset($_POST["search_client"])) {
         <input class="form-field" type="text" name="first_name" placeholder="First Name" required>
         <input class="form-field" type="text" name="last_name" placeholder="Last Name" required>
         <input class="form-field" type="text" name="email" placeholder="Email" required>
-        <input class="form-field" type="text" name="phone_number" placeholder="Phone Number" required>
+        <input class="form-field" type="text" maxlength="11" name="phone_number" placeholder="Phone Number" required>
         <input class="form-field" type="text" name="role" placeholder="Role" required>
         <textarea class="form-field" name="notes" placeholder="Notes" required></textarea>
         <input type="submit" class="form-button" value="Add Client">
@@ -239,7 +239,7 @@ if (!isset($_POST["search_client"])) {
         <input class="form-field" type="text" name="first_name" placeholder="First Name" required>
         <input class="form-field" type="text" name="last_name" placeholder="Last Name" required>
         <input class="form-field" type="text" name="email" placeholder="Email" required>
-        <input class="form-field" type="text" name="phone_number" placeholder="Phone Number" required>
+        <input class="form-field" type="text" maxlength="11" name="phone_number" placeholder="Phone Number" required>
         <input class="form-field" type="text" name="role" placeholder="Role" required>
         <textarea class="form-field" name="notes" placeholder="Notes" required></textarea>
         <input type="submit" class="form-button" value="Edit Client">
@@ -252,7 +252,7 @@ if (!isset($_POST["search_client"])) {
         <input class="form-field" type="text" name="first_name" placeholder="First Name">
         <input class="form-field" type="text" name="last_name" placeholder="Last Name">
         <input class="form-field" type="text" name="email" placeholder="Email">
-        <input class="form-field" type="text" name="phone_number" placeholder="Phone Number">
+        <input class="form-field" type="text" maxlength="11" name="phone_number" placeholder="Phone Number">
         <input class="form-field" type="text" name="role" placeholder="Role">
         <input type="submit" class="form-button" value="Search Client">
     </form>
