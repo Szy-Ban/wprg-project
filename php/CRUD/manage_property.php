@@ -57,7 +57,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         if ($property) {
             $query = "UPDATE property SET Type = ?, PType = ?, City = ?, Address = ?, ZIP_Code = ?, Square_meters = ?, nr_rooms = ?, nr_bedrooms = ?, nr_bathrooms = ?, Description = ?, Price = ? WHERE Property_ID = ?";
             $stmt = $conn->prepare($query);
-            $stmt->bind_param("issssdiiisdi", $type, $ptype, $city, $address, $zip_code, $square_meters, $nr_rooms, $nr_bedrooms, $nr_bathrooms, $feature, $description, $price, $property_id);
+            $stmt->bind_param("issssdiiisdi", $type, $ptype, $city, $address, $zip_code, $square_meters, $nr_rooms, $nr_bedrooms, $nr_bathrooms, $description, $price, $property_id);
             $stmt->execute();
             $stmt->close();
 
