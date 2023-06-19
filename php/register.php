@@ -94,17 +94,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <h2>Register</h2>
         <form method="POST" action="register.php">
             <label for="first_name">First name:</label>
-            <input type="text" id="first_name" name="first_name" class="form-field">
+            <input type="text" maxlength="25" id="first_name" name="first_name" class="form-field">
             <label for="last_name">Last name:</label>
-            <input type="text" id="last_name" name="last_name" class="form-field">
+            <input type="text" maxlength="25" id="last_name" name="last_name" class="form-field">
             <label for="email">Email:</label>
-            <input type="email" id="email" name="email" class="form-field">
+            <input type="email" maxlength="25" id="email" name="email" class="form-field">
             <label for="password">Password:</label>
-            <input type="password" id="password" name="password" class="form-field">
+            <input type="password" maxlength="12" id="password" name="password" class="form-field">
             <label for="phone_number">Phone number:</label>
-            <input type="tel" id="phone_number" name="phone_number" class="form-field">
+            <input type="tel" maxlength="11" id="phone_number" name="phone_number" class="form-field">
             <label for="notes">Notes:</label>
-            <textarea id="notes" name="notes" class="form-field"></textarea>
+            <textarea id="notes" maxlength="50" name="notes" class="form-field"></textarea>
             <input type="submit" value="Register" class="form-button">
         </form>
         <?php

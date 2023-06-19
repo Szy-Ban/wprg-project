@@ -192,10 +192,10 @@ if (!isset($_POST["search_agent"])) {
 <form id="add-agent-form" class="hidden" method="POST" action="manage_agents.php">
     <input type="hidden" name="add_agent">
     <h3> Add </h3>
-    <input class="form-field" type="text" name="first_name" placeholder="First Name" required>
-    <input class="form-field" type="text" name="last_name" placeholder="Last Name" required>
-    <input class="form-field" type="email" name="email" placeholder="Email" required>
-    <input class="form-field" type="text" name="phone_number" placeholder="Phone Number" required>
+    <input class="form-field" maxlength="25" type="text" name="first_name" placeholder="First Name" required>
+    <input class="form-field" maxlength="25" type="text" name="last_name" placeholder="Last Name" required>
+    <input class="form-field" maxlength="25" type="email" name="email" placeholder="Email" required>
+    <input class="form-field" maxlength="11" type="text" name="phone_number" placeholder="Phone Number" required>
     <input type="submit" class="form-button" value="Add Agent">
 </form>
 
@@ -203,10 +203,10 @@ if (!isset($_POST["search_agent"])) {
     <input type="hidden" name="edit_agent">
     <h3> Edit </h3>
     <input class="form-field" type="text" name="agent_id" placeholder="Agent ID" required>
-    <input class="form-field" type="text" name="first_name" placeholder="First Name" required>
-    <input class="form-field" type="text" name="last_name" placeholder="Last Name" required>
-    <input class="form-field" type="email" name="email" placeholder="Email" required>
-    <input class="form-field" type="text" name="phone_number" placeholder="Phone Number" required>
+    <input class="form-field" maxlength="25" type="text" name="first_name" placeholder="First Name" required>
+    <input class="form-field" maxlength="25" type="text" name="last_name" placeholder="Last Name" required>
+    <input class="form-field" maxlength="25" type="email" name="email" placeholder="Email" required>
+    <input class="form-field" maxlength="11" type="text" name="phone_number" placeholder="Phone Number" required>
     <input type="submit" class="form-button" value="Edit Agent">
 </form>
 
@@ -214,10 +214,10 @@ if (!isset($_POST["search_agent"])) {
     <input type="hidden" name="search_agent">
     <h3> Search </h3>
     <input class="form-field" type="text" name="agent_id" placeholder="Agent ID">
-    <input class="form-field" type="text" name="first_name" placeholder="First Name">
-    <input class="form-field" type="text" name="last_name" placeholder="Last Name">
-    <input class="form-field" type="email" name="email" placeholder="Email">
-    <input class="form-field" type="text" name="phone_number" placeholder="Phone Number">
+    <input class="form-field" maxlength="25" type="text" name="first_name" placeholder="First Name">
+    <input class="form-field" maxlength="25" type="text" name="last_name" placeholder="Last Name">
+    <input class="form-field" maxlength="25" type="email" name="email" placeholder="Email">
+    <input class="form-field" maxlength="11" type="text" name="phone_number" placeholder="Phone Number">
     <input type="submit" class="form-button" value="Search Agent">
 </form>
 

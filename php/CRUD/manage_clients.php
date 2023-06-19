@@ -221,13 +221,13 @@ if (!isset($_POST["search_client"])) {
     <form id="add-client-form" class="hidden" method="POST" action="manage_clients.php">
         <input type="hidden" name="add_client">
         <h3> Add </h3>
-        <input class="form-field" type="password" name="password" placeholder="Password" required>
-        <input class="form-field" type="text" name="first_name" placeholder="First Name" required>
-        <input class="form-field" type="text" name="last_name" placeholder="Last Name" required>
-        <input class="form-field" type="text" name="email" placeholder="Email" required>
-        <input class="form-field" type="text" maxlength="11" name="phone_number" placeholder="Phone Number" required>
-        <input class="form-field" type="text" name="role" placeholder="Role" required>
-        <textarea class="form-field" name="notes" placeholder="Notes" required></textarea>
+        <input class="form-field" maxlength="12" type="password" name="password" placeholder="Password" required>
+        <input class="form-field" maxlength="25" type="text" name="first_name" placeholder="First Name" required>
+        <input class="form-field" maxlength="25" type="text" name="last_name" placeholder="Last Name" required>
+        <input class="form-field" maxlength="25" type="text" name="email" placeholder="Email" required>
+        <input class="form-field" maxlength="11" type="text" maxlength="11" name="phone_number" placeholder="Phone Number" required>
+        <input class="form-field" maxlength="25" type="text" name="role" placeholder="Role" required>
+        <textarea class="form-field" maxlength="50" name="notes" placeholder="Notes" required></textarea>
         <input type="submit" class="form-button" value="Add Client">
     </form>
 
@@ -235,13 +235,13 @@ if (!isset($_POST["search_client"])) {
         <input type="hidden" name="edit_client">
         <h3> Edit </h3>
         <input class="form-field" type="text" name="client_id" placeholder="Client ID" required>
-        <input class="form-field" type="password" name="password" placeholder="Password" required>
-        <input class="form-field" type="text" name="first_name" placeholder="First Name" required>
-        <input class="form-field" type="text" name="last_name" placeholder="Last Name" required>
-        <input class="form-field" type="text" name="email" placeholder="Email" required>
-        <input class="form-field" type="text" maxlength="11" name="phone_number" placeholder="Phone Number" required>
-        <input class="form-field" type="text" name="role" placeholder="Role" required>
-        <textarea class="form-field" name="notes" placeholder="Notes" required></textarea>
+        <input class="form-field" maxlength="12" type="password" name="password" placeholder="Password" required>
+        <input class="form-field" maxlength="25" type="text" name="first_name" placeholder="First Name" required>
+        <input class="form-field" maxlength="25" type="text" name="last_name" placeholder="Last Name" required>
+        <input class="form-field" maxlength="25" type="text" name="email" placeholder="Email" required>
+        <input class="form-field" maxlength="11" type="text" maxlength="11" name="phone_number" placeholder="Phone Number" required>
+        <input class="form-field" maxlength="25" type="text" name="role" placeholder="Role" required>
+        <textarea class="form-field" maxlength="50" name="notes" placeholder="Notes" required></textarea>
         <input type="submit" class="form-button" value="Edit Client">
     </form>
 
@@ -249,11 +249,11 @@ if (!isset($_POST["search_client"])) {
         <input type="hidden" name="search_client">
         <h3> Search </h3>
         <input class="form-field" type="text" name="client_id" placeholder="Client ID">
-        <input class="form-field" type="text" name="first_name" placeholder="First Name">
-        <input class="form-field" type="text" name="last_name" placeholder="Last Name">
-        <input class="form-field" type="text" name="email" placeholder="Email">
-        <input class="form-field" type="text" maxlength="11" name="phone_number" placeholder="Phone Number">
-        <input class="form-field" type="text" name="role" placeholder="Role">
+        <input class="form-field" maxlength="25" type="text" name="first_name" placeholder="First Name">
+        <input class="form-field" maxlength="25" type="text" name="last_name" placeholder="Last Name">
+        <input class="form-field" maxlength="25" type="text" name="email" placeholder="Email">
+        <input class="form-field" maxlength="11" type="text" maxlength="11" name="phone_number" placeholder="Phone Number">
+        <input class="form-field" maxlength="25" type="text" name="role" placeholder="Role">
         <input type="submit" class="form-button" value="Search Client">
     </form>
 

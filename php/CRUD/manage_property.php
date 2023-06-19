@@ -245,17 +245,17 @@ if (!isset($_POST["search_property"])) {
     <form id="add-property-form" class="hidden" method="POST" action="manage_property.php">
         <input type="hidden" name="add_property">
         <h3> Add </h3>
-        <input class="form-field" type="text" name="type" placeholder="Type" required>
-        <input class="form-field" type="text" name="ptype" placeholder="PType" required>
-        <input class="form-field" type="text" name="city" placeholder="City" required>
-        <input class="form-field" type="text" name="address" placeholder="Address" required>
-        <input class="form-field" type="text" name="zip_code" placeholder="ZIP Code" required>
-        <input class="form-field" type="text" name="square_meters" placeholder="Square Meters" required>
-        <input class="form-field" type="text" name="nr_rooms" placeholder="Number of Rooms" required>
-        <input class="form-field" type="text" name="nr_bedrooms" placeholder="Number of Bedrooms" required>
-        <input class="form-field" type="text" name="nr_bathrooms" placeholder="Number of Bathrooms" required>
-        <input class="form-field" type="text" name="description" placeholder="Description" required>
-        <input class="form-field" type="text" name="price" placeholder="Price" required>
+        <input class="form-field" maxlength="1" type="text" name="type" placeholder="Type" required>
+        <input class="form-field" maxlength="25" type="text" name="ptype" placeholder="PType" required>
+        <input class="form-field" maxlength="25" type="text" name="city" placeholder="City" required>
+        <input class="form-field" maxlength="25" type="text" name="address" placeholder="Address" required>
+        <input class="form-field" maxlength="10" type="text" name="zip_code" placeholder="ZIP Code" required>
+        <input class="form-field" maxlength="5" type="text" name="square_meters" placeholder="Square Meters" required>
+        <input class="form-field" maxlength="25" type="text" name="nr_rooms" placeholder="Number of Rooms" required>
+        <input class="form-field" maxlength="3" type="text" name="nr_bedrooms" placeholder="Number of Bedrooms" required>
+        <input class="form-field" maxlength="3" type="text" name="nr_bathrooms" placeholder="Number of Bathrooms" required>
+        <input class="form-field" maxlength="50" type="text" name="description" placeholder="Description" required>
+        <input class="form-field" maxlength="15" type="text" name="price" placeholder="Price" required>
         <input type="submit" class="form-button" value="Add Property">
     </form>
 
@@ -263,17 +263,17 @@ if (!isset($_POST["search_property"])) {
         <input type="hidden" name="edit_property">
         <h3> Edit </h3>
         <input class="form-field" type="text" name="property_id" placeholder="Property ID" required>
-        <input class="form-field" type="text" name="type" placeholder="Type" required>
-        <input class="form-field" type="text" name="ptype" placeholder="PType" required>
-        <input class="form-field" type="text" name="city" placeholder="City" required>
-        <input class="form-field" type="text" name="address" placeholder="Address" required>
-        <input class="form-field" type="text" name="zip_code" placeholder="ZIP Code" required>
-        <input class="form-field" type="text" name="square_meters" placeholder="Square Meters" required>
-        <input class="form-field" type="text" name="nr_rooms" placeholder="Number of Rooms" required>
-        <input class="form-field" type="text" name="nr_bedrooms" placeholder="Number of Bedrooms" required>
-        <input class="form-field" type="text" name="nr_bathrooms" placeholder="Number of Bathrooms" required>
-        <input class="form-field" type="text" name="description" placeholder="Description" required>
-        <input class="form-field" type="text" name="price" placeholder="Price" required>
+        <input class="form-field" maxlength="1" type="text" name="type" placeholder="Type" required>
+        <input class="form-field" maxlength="25" type="text" name="ptype" placeholder="PType" required>
+        <input class="form-field" maxlength="25" type="text" name="city" placeholder="City" required>
+        <input class="form-field" maxlength="25" type="text" name="address" placeholder="Address" required>
+        <input class="form-field" maxlength="10" type="text" name="zip_code" placeholder="ZIP Code" required>
+        <input class="form-field" maxlength="5" type="text" name="square_meters" placeholder="Square Meters" required>
+        <input class="form-field" maxlength="25" type="text" name="nr_rooms" placeholder="Number of Rooms" required>
+        <input class="form-field" maxlength="3" type="text" name="nr_bedrooms" placeholder="Number of Bedrooms" required>
+        <input class="form-field" maxlength="3" type="text" name="nr_bathrooms" placeholder="Number of Bathrooms" required>
+        <input class="form-field" maxlength="50" type="text" name="description" placeholder="Description" required>
+        <input class="form-field" maxlength="15" type="text" name="price" placeholder="Price" required>
         <input type="submit" class="form-button" value="Edit Property">
     </form>
 
@@ -281,22 +281,22 @@ if (!isset($_POST["search_property"])) {
         <input type="hidden" name="search_property">
         <h3> Search </h3>
         <input class="form-field" type="text" name="property_id" placeholder="Property ID">
-        <input class="form-field" type="text" name="type" placeholder="Type">
-        <input class="form-field" type="text" name="ptype" placeholder="PType">
-        <input class="form-field" type="text" name="city" placeholder="City">
-        <input class="form-field" type="text" name="address" placeholder="Address">
-        <input class="form-field" type="text" name="zip_code" placeholder="ZIP Code">
-        <input class="form-field" type="text" name="square_meters_min" placeholder="Min Square Meters">
-        <input class="form-field" type="text" name="square_meters_max" placeholder="Max Square Meters">
-        <input class="form-field" type="text" name="nr_rooms_min" placeholder="Min Number of Rooms">
-        <input class="form-field" type="text" name="nr_rooms_max" placeholder="Max Number of Rooms">
-        <input class="form-field" type="text" name="nr_bedrooms_min" placeholder="Min Number of Bedrooms">
-        <input class="form-field" type="text" name="nr_bedrooms_max" placeholder="Max Number of Bedrooms">
-        <input class="form-field" type="text" name="nr_bathrooms_min" placeholder="Min Number of Bathrooms">
-        <input class="form-field" type="text" name="nr_bathrooms_max" placeholder="Max Number of Bathrooms">
-        <input class="form-field" type="text" name="description" placeholder="Description">
-        <input class="form-field" type="text" name="price_min" placeholder="Min Price">
-        <input class="form-field" type="text" name="price_max" placeholder="Max Price">
+        <input class="form-field" maxlength="1" type="text" name="type" placeholder="Type">
+        <input class="form-field" maxlength="25" type="text" name="ptype" placeholder="PType">
+        <input class="form-field" maxlength="25" type="text" name="city" placeholder="City">
+        <input class="form-field" maxlength="25" type="text" name="address" placeholder="Address">
+        <input class="form-field" maxlength="10" type="text" name="zip_code" placeholder="ZIP Code">
+        <input class="form-field" maxlength="5" type="text" name="square_meters_min" placeholder="Min Square Meters">
+        <input class="form-field" maxlength="5" type="text" name="square_meters_max" placeholder="Max Square Meters">
+        <input class="form-field" maxlength="5" type="text" name="nr_rooms_min" placeholder="Min Number of Rooms">
+        <input class="form-field" maxlength="5" type="text" name="nr_rooms_max" placeholder="Max Number of Rooms">
+        <input class="form-field" maxlength="5" type="text" name="nr_bedrooms_min" placeholder="Min Number of Bedrooms">
+        <input class="form-field" maxlength="5" type="text" name="nr_bedrooms_max" placeholder="Max Number of Bedrooms">
+        <input class="form-field" maxlength="5" type="text" name="nr_bathrooms_min" placeholder="Min Number of Bathrooms">
+        <input class="form-field" maxlength="5" type="text" name="nr_bathrooms_max" placeholder="Max Number of Bathrooms">
+        <input class="form-field" maxlength="50" type="text" name="description" placeholder="Description">
+        <input class="form-field" maxlength="15" type="text" name="price_min" placeholder="Min Price">
+        <input class="form-field" maxlength="15" type="text" name="price_max" placeholder="Max Price">
         <input type="submit" class="form-button" value="Search Property">
     </form>
 

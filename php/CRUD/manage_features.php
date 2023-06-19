@@ -157,7 +157,7 @@ if (!isset($_POST["search_feature"])) {
 <form id="add-feature-form" class="hidden" method="POST" action="manage_features.php">
     <input type="hidden" name="add_feature">
     <h3> Add </h3>
-    <input class="form-field" type="text" name="feature_type" placeholder="Feature Type" required>
+    <input class="form-field" maxlength="25" type="text" name="feature_type" placeholder="Feature Type" required>
     <input type="submit" class="form-button" value="Add Feature">
 </form>
 
@@ -165,7 +165,7 @@ if (!isset($_POST["search_feature"])) {
     <input type="hidden" name="edit_feature">
     <h3> Edit </h3>
     <input class="form-field" type="text" name="feature_id" placeholder="Feature ID" required>
-    <input class="form-field" type="text" name="feature_type" placeholder="Feature Type" required>
+    <input class="form-field" maxlength="25" type="text" name="feature_type" placeholder="Feature Type" required>
     <input type="submit" class="form-button" value="Edit Feature">
 </form>
 
@@ -173,14 +173,14 @@ if (!isset($_POST["search_feature"])) {
     <input type="hidden" name="search_feature">
     <h3> Search </h3>
     <input class="form-field" type="text" name="feature_id" placeholder="Feature ID">
-    <input class="form-field" type="text" name="feature_type" placeholder="Feature Type">
+    <input class="form-field" maxlength="25" type="text" name="feature_type" placeholder="Feature Type">
     <input type="submit" class="form-button" value="Search Feature">
 </form>
 
 <form id="delete-feature-form" class="hidden" method="POST" action="manage_features.php">
     <input type="hidden" name="delete_feature">
     <h3> Delete </h3>
-    <input class="form-field" type="text" name="feature_id" placeholder="Feature ID" required>
+    <input class="form-field" maxlength="25" type="text" name="feature_id" placeholder="Feature ID" required>
     <input type="submit" class="form-button" value="Delete Feature">
 </form>
 
