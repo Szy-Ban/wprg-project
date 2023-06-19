@@ -74,7 +74,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         $checkStmt->close();
 
         if (!$clientExists) {
-            
+            $error_message = "No record in base.";
         } else {
             // czy w client_property table
             $checkAssociatedQuery = "SELECT * FROM client_property WHERE Client_ID = ?";
